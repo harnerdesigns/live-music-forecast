@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: */tags/
+Disallow: */categories/
+
+sitemap: https://gatsby-airtable-advanced-starter.marcomelilli.com/sitemap.xml
