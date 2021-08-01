@@ -6,6 +6,8 @@ import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Header from "../components/Header/Header";
+import "../components/fontawesome"
+
 
 export default class MainLayout extends React.Component {
   render() {

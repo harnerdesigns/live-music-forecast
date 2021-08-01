@@ -35,7 +35,6 @@ export const pageQuery = graphql`
         node {
           data {
             Name
-            Slug
             Genre
             StartDate(formatString: $dateFormat)
             EndDate(formatString: $dateFormat)

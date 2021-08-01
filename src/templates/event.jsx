@@ -60,7 +60,6 @@ export const pageQuery = graphql`
     airtable(fields: {slug: {eq: $slug}}) {
       data {
         Name
-        Slug
         Genre
         StartDate(formatString: $dateFormat)
         EndDate(formatString: $dateFormat)

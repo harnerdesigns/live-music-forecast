@@ -31,7 +31,7 @@ export const pageQuery = graphql`
 query IndexQuery($today: Date!) {
   allAirtable(
     limit: 2000
-    sort: {fields: [data___StartDate], order: DESC}
+    sort: {fields: [data___StartDate, data___Featured], order: DESC}
     filter: {data: {Status: {eq: "Published"}, StartDate: {lte: $today}, EndDate: {lte: $today}}}
   ) {
     edges {
@@ -40,17 +40,20 @@ query IndexQuery($today: Date!) {
           slug
         }
         data {
-          Slug
           StartDate
           EndDate
+          DoorsTime
           Name
+          Description
+          Tags
           Featured
           Image{
             url
           }
           Genre
           Name__from_Genre_
-          Venue_City 
+          Venue_City
+          Venue_Name
         }
       }
     }

@@ -7,7 +7,7 @@ const createEventSlug = (event)=>{
   let slug = "";
 
   console.log({slugEvent: event});
-  let city = event.data.Venue_City[0]
+  let city = event.data.Venue_City[0] || null
   let name = event.data.Name
   slug += _.kebabCase(city);
   slug += '/';
@@ -52,7 +52,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               data {
                 Name
-                Slug
+                Description
                 StartDate
                 EndDate
                 Genre
