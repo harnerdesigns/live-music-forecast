@@ -3,90 +3,66 @@ const _ = require("lodash");
 const moment = require("moment");
 const siteConfig = require("./data/SiteConfig");
 
+const createEventSlug = (event)=>{
+  let slug = "";
+
+  console.log({slugEvent: event});
+  let city = event.data.Venue_City[0]
+  let name = event.data.Name
+  slug += _.kebabCase(city);
+  slug += '/';
+  slug += _.kebabCase(name);
+
+  return slug
+
+}
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   let slug;
-  if (node.internal.type === "MarkdownRemark") {
-    const fileNode = getNode(node.parent);
-    if(fileNode && fileNode.relativePath) {
-      const parsedFilePath = path.parse(fileNode.relativePath);
-      if (
-        Object.prototype.hasOwnProperty.call(node, "frontmatter") &&
-        Object.prototype.hasOwnProperty.call(node.frontmatter, "title")
-      ) {
-        slug = `/${_.kebabCase(node.frontmatter.title)}`;
-      } else if (parsedFilePath.name !== "index" && parsedFilePath.dir !== "") {
-        slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
-      } else if (parsedFilePath.dir === "") {
-        slug = `/${parsedFilePath.name}/`;
-      } else {
-        slug = `/${parsedFilePath.dir}/`;
-      }
 
-      if (Object.prototype.hasOwnProperty.call(node, "frontmatter")) {
-        if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
-          slug = `/${_.kebabCase(node.frontmatter.slug)}`;
-        if (Object.prototype.hasOwnProperty.call(node.frontmatter, "date")) {
-          const date = moment(node.frontmatter.date, siteConfig.dateFormat);
-          if (!date.isValid)
-            console.warn(`WARNING: Invalid date.`, node.frontmatter);
 
-          createNodeField({
-            node,
-            name: "date",
-            value: date.toISOString()
-          });
-        }
-      }
-      createNodeField({ node, name: "slug", value: slug });
-    }
+  if (node.internal.type === "Airtable") {
+
+    console.log(node);
+
+
+    createNodeField({ node, name: "slug", value: createEventSlug(node) });
+    
+
   }
 };
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postPage = path.resolve("src/templates/post.jsx");
+  const eventPage = path.resolve("src/templates/event.jsx");
   const tagPage = path.resolve("src/templates/tag.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
 
   const markdownQueryResult = await graphql(
     `
-      query ($dateFormat: String) {
+      query{
         allAirtable(
-          filter: { table: { eq: "Blog" }, data : { status: {eq: "publish"} } }
+          filter: { table: { eq: "Events" }, data : { Status: {eq: "Published"} } }
         ) {
           edges {
             node {
-              data {
-                title
-                category
-                tags
+              fields{
                 slug
-                date(formatString: $dateFormat)
-                author {
-                  data { 
-                    name
-                    email
-                    twitter
-                    github
-                  }
-                }
-                postMarkdown {
-                  childMarkdownRemark {
-                    html
-                    excerpt(format: PLAIN)
-                    timeToRead
-                  }
-                }
-                image {
-                  url
-                }
+              }
+              data {
+                Name
+                Slug
+                StartDate
+                EndDate
+                Genre
+                Venue_City
               }
             }
           }
         }
       }
-    `, { dateFormat: siteConfig.dateFormat }
+    `, { dateFormat: siteConfig.dateFormat}
   );
 
   if (markdownQueryResult.errors) {
@@ -98,16 +74,14 @@ exports.createPages = async ({ graphql, actions }) => {
   const categorySet = new Set();
 
   const postsEdges = markdownQueryResult.data.allAirtable.edges;
+  console.log({postsEdges});
 
   postsEdges.sort((postA, postB) => {
     const dateA = moment(
-      postA.node.data.date,
-      siteConfig.dateFormat
-    );
+      postA.node.data.StartDate    );
 
     const dateB = moment(
-      postB.node.data.date,
-      siteConfig.dateFormat
+      postB.node.data.StartDate
     );
 
     if (dateA.isBefore(dateB)) return 1;
@@ -117,14 +91,14 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   postsEdges.forEach((edge, index) => {
-    if (edge.node.data.tags) {
+    if (edge.node.data.Tags) {
       edge.node.data.tags.forEach(tag => {
         tagSet.add(tag);
       });
     }
 
-    if (edge.node.data.category) {
-      categorySet.add(edge.node.data.category);
+    if (edge.node.data.Genre) {
+      categorySet.add(edge.node.data.Genre);
     }
 
     const nextID = index + 1 < postsEdges.length ? index + 1 : 0;
@@ -132,16 +106,20 @@ exports.createPages = async ({ graphql, actions }) => {
     const nextEdge = postsEdges[nextID];
     const prevEdge = postsEdges[prevID];
 
+    const postSlug = createEventSlug(edge.node)
+    console.log(postSlug);
+
     createPage({
-      path: edge.node.data.slug,
-      component: postPage,
+      path: postSlug,
+      component: eventPage,
       context: {
         dateFormat: siteConfig.dateFormat,
-        slug: edge.node.data.slug,
-        nexttitle: nextEdge.node.data.title,
-        nextslug: nextEdge.node.data.slug,
-        prevtitle: prevEdge.node.data.title,
-        prevslug: prevEdge.node.data.slug
+        today: new Date(),
+        slug: postSlug,
+        nexttitle: nextEdge.node.data.Name,
+        nextslug: _.kebabCase(nextEdge.node.data.Name),
+        prevtitle: prevEdge.node.data.Name,
+        prevslug: _.kebabCase(prevEdge.node.data.Name)
       }
     });
   });
@@ -152,6 +130,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: tagPage,
       context: {
         tag,
+        today: new Date(),
         dateFormat: siteConfig.dateFormat
       }
     });
@@ -162,8 +141,25 @@ exports.createPages = async ({ graphql, actions }) => {
       component: categoryPage,
       context: {
         category,
+        today: new Date(),
         dateFormat: siteConfig.dateFormat
       }
     });
   });
 };
+
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+  deletePage(page)
+  // You can access the variable "house" in your page queries now
+  console.log(new Date())
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      today: new Date(),
+      dateFormat: siteConfig.dateFormat
+    },
+  })
+}

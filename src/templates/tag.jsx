@@ -22,39 +22,21 @@ export default class TagTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query TagPage($tag: String, $dateFormat: String, $today: Date!) {
     allAirtable(
       limit: 1000
-      sort: { fields: [data___date], order: DESC }
-      filter: { data : { tags: { eq: $tag }, status: {eq: "publish"} } }
+      sort: { fields: [data___StartDate], order: DESC }
+      filter: { data : { Tags: { eq: $tag }, Status: {eq: "Published"} } }
     ) {
       totalCount
       edges {
         node {
           data {
-            title
-            date
-            category
-            tags
-            slug
-            author {
-              data { 
-                name
-                email
-                twitter
-                github
-              }
-            }
-            postMarkdown {
-              childMarkdownRemark {
-                html
-                excerpt(format: PLAIN)
-                timeToRead
-              }
-            }
-            image {
-              url
-            }
+            Name
+            Slug
+            Genre
+            StartDate(formatString: $dateFormat)
+            EndDate(formatString: $dateFormat)
           }
         }
       }

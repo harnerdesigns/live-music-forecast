@@ -10,14 +10,12 @@ class PostListing extends React.Component {
     const postList = [];
     this.props.postEdges.forEach(postEdge => {
       postList.push({
-        path: postEdge.node.data.slug,
-        tags: postEdge.node.data.tags,
-        category: postEdge.node.data.category,
-        image: postEdge.node.data.image ? postEdge.node.data.image[0] : null,
-        title: postEdge.node.data.title,
-        date: siteConfig.dateFormat ? moment(postEdge.node.data.date).format(siteConfig.dateFormat) : postEdge.node.data.date,
-        author: postEdge.node.data.author ? postEdge.node.data.author[0].data.name : null,
-        postMarkdown: postEdge.node.data.postMarkdown
+        path: postEdge.node.data.Slug,
+        tags: postEdge.node.data.Tags,
+        category: postEdge.node.data.Category,
+        name: postEdge.node.data.Name,
+        startDate: siteConfig.dateFormat ? moment(postEdge.node.data.StartDate).format(siteConfig.dateFormat) : postEdge.node.data.StartDate,        
+        endDate: siteConfig.dateFormat ? moment(postEdge.node.data.endDate).format(siteConfig.dateFormat) : postEdge.node.data.endDate,
       });
     });
     return postList;
@@ -28,12 +26,10 @@ class PostListing extends React.Component {
       <div>
         {/* Your post list here. */
         postList.map(post => (
-          <div key={post.title} className="post-box">
-            <Link to={post.path} key={post.title}>
-              <h1>{post.title}</h1>
+          <div key={post.name} className="post-box">
+            <Link to={post.path} key={post.name}>
+              <h1>{post.name}</h1>
             </Link>            
-            <div>{post.postMarkdown.childMarkdownRemark.excerpt}</div>
-            <div className="sub-excerpt">📅 {post.date}<span className="author">🙍‍♂ {post.author}</span><span>⏱️ {post.postMarkdown.childMarkdownRemark.timeToRead} min</span></div>
           </div>
         ))}
       </div>

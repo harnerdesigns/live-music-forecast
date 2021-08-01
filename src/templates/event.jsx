@@ -2,7 +2,6 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Layout from "../layout";
-import UserInfo from "../components/UserInfo/UserInfo";
 import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
@@ -17,8 +16,7 @@ export default class PostTemplate extends React.Component {
     const { slug } = pageContext;
     const postNode = data.airtable;
     const post = postNode.data;
-    var imageUrl = post.image ? post.image[0].url : "";
-    var author = post.author ? post.author[0].data : "";
+    var imageUrl = post.Image ? post.Image[0].url : "";
     if (!post.id) {
       post.id = slug;
     }
@@ -29,12 +27,12 @@ export default class PostTemplate extends React.Component {
       <Layout>
         <div>
           <Helmet>
-            <title>{`${post.title} | ${config.siteTitle}`}</title>
+            <title>{`${post.Name} | ${config.siteTitle}`}</title>
           </Helmet>
           <SEO postPath={slug} postNode={postNode} postSEO />
           <div>
-            <h1 className="title">{post.title}</h1>
-            <div className="date">📅 {post.date}</div>
+            <h1 className="title">{post.Name}</h1>
+            <div className="date">📅 {post.Date}</div>
             <div 
             style={{
               backgroundImage: 'url(' + imageUrl + ')',
@@ -44,13 +42,11 @@ export default class PostTemplate extends React.Component {
               height:'15rem' 
               }}>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: post.postMarkdown.childMarkdownRemark.html }} />
-            {author && <UserInfo author={author} />}
             <div className="post-meta">
               <PostTags tags={post.tags} />
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            <Disqus postNode={postNode} />
+            {/* <Disqus postNode={postNode} />  */}
           </div>
         </div>
       </Layout>
@@ -61,31 +57,17 @@ export default class PostTemplate extends React.Component {
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $dateFormat: String) {
-    airtable(data: {slug: {eq: $slug}}) {
+    airtable(fields: {slug: {eq: $slug}}) {
       data {
-        title
-        category
-        tags
-        slug
-        date(formatString: $dateFormat)
-        author {
-          data { 
-            name
-            email
-            twitter
-            github
-          }
-        }
-        postMarkdown {
-          childMarkdownRemark {
-            html
-            excerpt(format: PLAIN)
-            timeToRead
-          }
-        }
-        image {
+        Name
+        Slug
+        Genre
+        StartDate(formatString: $dateFormat)
+        EndDate(formatString: $dateFormat)
+        Image{
           url
         }
+      
       }
     }
   }

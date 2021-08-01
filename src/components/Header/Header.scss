@@ -1,0 +1,33 @@
+header.header{
+
+    background: #fff;
+    border-top: 30px solid var(--blue);
+    border-bottom: 30px solid var(--blue);
+    color: #000;
+    
+
+    .logo__wrapper{
+        width: auto;
+        color: #000;
+        text-decoration: none;
+
+
+    }
+    .site-title{
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        svg{
+            height: 3em;
+            margin: -20px 0.25em;
+            transition: 300ms;
+        }
+        &:hover{
+            color: #333;
+            svg{ transform: scale(1.05);}
+        }
+
+    }
+}

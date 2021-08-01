@@ -7,8 +7,7 @@
 .notice-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
+    justify-content: center;
     align-items: center;
     margin-top: 25px;
 }
@@ -19,7 +18,8 @@
     }
 }
 
-.notice-container h4 {
+.notice-container p {
     text-align: center;
     margin: 0;
+    font-size: 1rem;
 }

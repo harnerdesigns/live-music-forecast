@@ -14,10 +14,8 @@ class SEO extends Component {
     if (postSEO) {
       const postMeta = postNode.data;
       ({ title } = postMeta);
-      description = postMeta.postMarkdown.childMarkdownRemark.excerpt //split(/\s+/).slice(0,35).join(" ") + '...';
       image = postMeta.image ? postMeta.image[0].url : "";
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
-      author = postMeta.author[0].data;
     } else {
       title = config.siteTitle;
       description = config.siteDescription;

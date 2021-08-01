@@ -17,10 +17,12 @@ module.exports = {
         config.siteUrl,
         config.pathPrefix
       )}/logos/logo-512.png`,
-      copyright: config.copyright
+      copyright: config.copyright,
+      today: new Date(),
     }
   },
   plugins: [
+    "gatsby-plugin-sass",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-lodash",
     {
@@ -38,9 +40,8 @@ module.exports = {
           {
             baseId: process.env.AIRTABLE_BASE, // specify via env
             tableName: process.env.AIRTABLE_TABLE_NAME, // specify via env
-            queryName: `posts`, // optional
-            tableLinks: [`author`],
-            mapping: { postMarkdown: `text/markdown` },
+            queryName: `events`, // optional
+            tableLinks: [`Artists`],
           },
           {
             baseId:  process.env.AIRTABLE_BASE,
@@ -110,91 +111,74 @@ module.exports = {
       }
     },
     "gatsby-plugin-offline",
-    {
-      resolve: "gatsby-plugin-feed",
-      options: {
-        setup(ref) {
-          const ret = ref.query.site.siteMetadata.rssMetadata;
-          ret.allMarkdownRemark = ref.query.allMarkdownRemark;
-          ret.generator = "GatsbyJS Airtable Advanced Starter";
-          return ret;
-        },
-        query: `
-        {
-          site {
-            siteMetadata {
-              rssMetadata {
-                site_url
-                feed_url
-                title
-                description
-                image_url
-                copyright
-              }
-            }
-          }
-        }
-      `,
-        feeds: [
-          {
-            serialize(ctx) {
-              const { rssMetadata } = ctx.query.site.siteMetadata;
-              return ctx.query.allAirtable.edges.map(edge => ({
-                date: edge.node.data.date,
-                title: edge.node.data.title,
-                description: edge.node.data.postMarkdown.childMarkdownRemark.excerpt,
-                url: rssMetadata.site_url + "/" + edge.node.data.slug,
-                guid: rssMetadata.site_url + "/" + edge.node.data.slug,
-                custom_elements: [
-                  { "content:encoded": edge.node.data.postMarkdown.childMarkdownRemark.html },
-                  { author: edge.node.data.author ? edge.node.data.author[0].data.name : null},
-                  { category: edge.node.data.category}
-                ]
-              }));
-            },
-            query: `
-            {
-              allAirtable(
-                limit: 1000
-                sort: {fields: data___date, order: DESC}
-                filter: {data: {status: {eq: "publish"}}}
-              ) {
-                edges {
-                  node {
-                    data {
-                      slug
-                      date
-                      title
-                      category
-                      tags
-                      author {
-                        data { 
-                          name,
-                          email,
-                          twitter,
-                          github
-                        }
-                      }
-                      postMarkdown {
-                        childMarkdownRemark {
-                          html
-                          excerpt(format: PLAIN)
-                          timeToRead
-                        }
-                      }
-                      image {
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            `,
-            output: config.siteRss
-          }
-        ]
-      }
-    }
+    // {
+    //   resolve: "gatsby-plugin-feed",
+    //   options: {
+    //     setup(ref) {
+    //       const ret = ref.query.site.siteMetadata.rssMetadata;
+    //       ret.allMarkdownRemark = ref.query.allMarkdownRemark;
+    //       ret.generator = "GatsbyJS Airtable Advanced Starter";
+    //       return ret;
+    //     },
+    //     query: `
+    //     {
+    //       site {
+    //         siteMetadata {
+    //           rssMetadata {
+    //             site_url
+    //             feed_url
+    //             title
+    //             description
+    //             image_url
+    //             copyright
+    //           }
+    //         }
+    //       }
+    //     }
+    //   `,
+    //     feeds: [
+    //       {
+    //         serialize(ctx) {
+    //           const { rssMetadata } = ctx.query.site.siteMetadata;
+    //           return ctx.query.allAirtable.edges.map(edge => ({
+    //             date: edge.node.data.startDate,
+    //             title: edge.node.data.Name,
+    //             description: edge.node.data.postMarkdown.childMarkdownRemark.excerpt,
+    //             url: rssMetadata.site_url + "/" + edge.node.data.Slug,
+    //             guid: rssMetadata.site_url + "/" + edge.node.data.Slug,
+    //             custom_elements: [
+    //               { "content:encoded": edge.node.data.postMarkdown.childMarkdownRemark.html },
+    //               { author: edge.node.data.author ? edge.node.data.author[0].data.name : null},
+    //               { category: edge.node.data.category}
+    //             ]
+    //           }));
+    //         },
+    //         query: `
+    //         {
+    //           allAirtable(
+    //             limit: 1000
+    //             sort: {fields: data___StartDate, order: DESC}
+    //             filter: {data: {status: {eq: "publish"}}}
+    //           ) {
+    //             edges {
+    //               node {
+    //                 data {
+    //                   Slug
+    //                   StartDate
+    //                   EndDate
+    //                   Name
+    //                   Genre
+    //                   Tags
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //         `,
+    //         output: config.siteRss
+    //       }
+    //     ]
+    //   }
+    // }
   ]
 };
