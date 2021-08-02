@@ -8,9 +8,9 @@ import _ from "lodash";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
 
 import GrayCo from "../../images/gray-co.svg";
-import BlueBorder from "../../images/blue-border.svg";
 
 import genreIcons from "../genre-icons";
+import BlueBorder from "../BlueBorder/BlueBorder";
 
 const EventCard = ({ event }) => {
   var settings = {
@@ -66,7 +66,7 @@ const EventCard = ({ event }) => {
       {event.featured && event.description && (
         <>
           <div className="event__description">{event.description}</div>
-          <img className="blue-border" src={BlueBorder} />
+          <BlueBorder />
         </>
       )}
 

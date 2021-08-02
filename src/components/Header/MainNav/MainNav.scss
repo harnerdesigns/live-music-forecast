@@ -1,0 +1,30 @@
+.nav__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .nav__item {
+        width: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        text-decoration: none;
+        font-weight: 900;
+        color: #000;
+
+        &:hover{
+            background: #eee;
+        }
+
+        &.button {
+            background: var(--yellow);
+            padding: 1rem 2rem;
+
+            &:hover{
+                opacity: 0.6;
+            }
+        }
+    }
+}

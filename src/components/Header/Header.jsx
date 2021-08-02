@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
 import "./Header.scss";
+import MainNav from "./MainNav/MainNav";
 
 class Header extends Component {
   render() {
@@ -12,6 +13,7 @@ class Header extends Component {
 <path d="M400 600C510.457 600 600 510.457 600 400C600 289.543 510.457 200 400 200C289.543 200 200 289.543 200 400C200 510.457 289.543 600 400 600Z" fill="#FFD700"/>
 </svg> Live Music Directory</h1>
         </Link>
+        <MainNav />
       </header>
     );
   }

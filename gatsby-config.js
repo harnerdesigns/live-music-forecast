@@ -16,7 +16,7 @@ module.exports = {
       image_url: `${urljoin(
         config.siteUrl,
         config.pathPrefix
-      )}/logos/logo-512.png`,
+      )}/logos/logo-1024.png`,
       copyright: config.copyright,
       today: new Date(),
     }
@@ -41,11 +41,25 @@ module.exports = {
             baseId: process.env.AIRTABLE_BASE, // specify via env
             tableName: process.env.AIRTABLE_TABLE_NAME, // specify via env
             queryName: `events`, // optional
-            tableLinks: [`Artists`],
+            tableLinks: [`Artists`, `Venues`],
           },
           {
             baseId:  process.env.AIRTABLE_BASE,
-            tableName: process.env.AIRTABLE_TABLE_NAME_LINKED
+            tableName: "Artists",
+            queryName: "artists",
+            tableLinks: [`Events`, `Genres`]
+          },
+          {
+            baseId:  process.env.AIRTABLE_BASE,
+            tableName: 'Genres',
+            queryName: 'genres',
+            tableLinks: [`Artists`, `Events`]
+          },
+          {
+            baseId:  process.env.AIRTABLE_BASE,
+            tableName: 'Venues',
+            queryName: 'venues',
+            tableLinks: ['Events']
           }
         ]
       }

@@ -1,34 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
 import Helmet from "react-helmet";
-import { graphql } from "gatsby";
 import Layout from "../layout";
-
-import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
-import ForecastGrid from "../components/ForecastGrid/ForecastGrid";
+import BrowseGrid from "../components/Pages/Browse/Browse";
 
-class Index extends React.Component {
+class BrowsePage extends Component {
+
+  
   render() {
     const postEdges = this.props.data.allAirtable.edges;
-    console.log({context: this.props.pageContext});
-    console.log({postEdges});
+
     return (
       <Layout>
-        <div className="index-container">
-          <Helmet title={config.siteTitle} />
-          <SEO />
-          <ForecastGrid daysToShow={10} postEdges={postEdges} showButton={true} />
-        </div>
+        <main className="browse__container">
+          <Helmet title={`Browse Events | ${config.siteTitle}`} />
+          <BrowseGrid events={postEdges} />
+        </main>
       </Layout>
     );
   }
 }
 
-export default Index;
+export default BrowsePage;
 
-/* eslint no-undef: "off" */
+
 export const pageQuery = graphql`
-query IndexQuery($today: Date!) {
+query BrowseQuery($today: Date!) {
   allAirtable(
     limit: 2000
     sort: {fields: [data___StartDate, data___Featured], order: DESC}

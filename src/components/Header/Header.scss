@@ -5,6 +5,9 @@ header.header {
     color: #000;
     z-index: 9999;
     position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
 
     .logo__wrapper {
         width: auto;
