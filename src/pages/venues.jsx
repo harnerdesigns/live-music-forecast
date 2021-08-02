@@ -5,13 +5,13 @@ import config from "../../data/SiteConfig";
 import BrowseGrid from "../components/Pages/Browse/Browse";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
 import { Link } from "gatsby";
-
+import VenueCard from "../components/VenueCard/VenueCard";
+import { graphql } from 'gatsby'
+import VenueGrid from "../components/VenueCardGrid/VenueCardGrid";
 class BrowsePage extends Component {
   render() {
     const postEdges = this.props.data.allAirtable.edges;
-    const venues = postEdges.map((edge) => {
-      return <Link to={edge.node.fields.slug}>{edge.node.data.Name}</Link>;
-    });
+
     return (
       <Layout>
         <main className="browse__container">
@@ -20,7 +20,7 @@ class BrowsePage extends Component {
             title="Venue Database"
             subtitle="All The Cool Places To Go See Live Music In Colorado"
           />
-          {venues}
+          <VenueGrid venues={postEdges} />
         </main>
       </Layout>
     );
@@ -33,7 +33,7 @@ export const pageQuery = graphql`
   query VenuesQuery {
     allAirtable(
       limit: 2000
-      sort: { fields: [data___Name], order: DESC }
+      sort: { fields: [data___Featured, data___Name], order: ASC }
       filter: { table: { eq: "Venues" } }
     ) {
       edges {
@@ -42,8 +42,14 @@ export const pageQuery = graphql`
             slug
           }
           data {
+            Featured
             Name
             Description
+            City
+            Logo {
+              url
+            }
+            Tags
           }
         }
       }

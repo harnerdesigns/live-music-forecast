@@ -7,11 +7,13 @@ import config from "../../data/SiteConfig";
 import ForecastGrid from "../components/ForecastGrid/ForecastGrid";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
 import BlueBorder from "../components/BlueBorder/BlueBorder";
+import VenueGrid from "../components/VenueCardGrid/VenueCardGrid";
 
 const City = ({pageContext, data}) => {
   
     const { city } = pageContext;
     const postEdges = data.events.edges;
+    const venues = data.venues.edges;
     return (
       <Layout>
         <div className="category-container">
@@ -23,6 +25,8 @@ const City = ({pageContext, data}) => {
           <BlueBorder />
 
           <PageTitle title={"Venues In " + city} />
+
+          <VenueGrid venues={ venues } />
 
         </div>
       </Layout>
@@ -75,20 +79,15 @@ export const pageQuery = graphql`
             slug
           }
           data {
-            StartDate
-            EndDate
-            DoorsTime
+            
             Name
             Description
             Tags
             Featured
-            Image{
+            City
+            Logo{
               url
             }
-            Genre
-            Name__from_Genre_
-            Venue_City
-            Venue_Name
           }
         }
       }

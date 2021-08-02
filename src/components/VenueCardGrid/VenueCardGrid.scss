@@ -1,0 +1,10 @@
+.venue__grid {
+ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+    max-width: 85%;
+    margin: 2rem auto;
+    grid-auto-flow: dense;
+
+}

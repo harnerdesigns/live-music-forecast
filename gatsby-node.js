@@ -11,6 +11,9 @@ const createEventSlug = (event)=>{
   slug += _.kebabCase(city);
   slug += '/';
   slug += _.kebabCase(name);
+  slug += '-';
+  slug += moment(event.data.StartDate).format("MM-DD-YYYY")
+
 
   return slug
 
@@ -75,6 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagPage = path.resolve("src/templates/tag.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
   const cityPage = path.resolve("src/templates/city.jsx");
+  const venuePage = path.resolve("src/templates/venue.jsx");
 
   const markdownQueryResult = await graphql(
     `
@@ -199,6 +203,63 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     });
   });
+
+
+  const venuesQuery = await graphql(
+    `
+      query{
+        allAirtable(
+          filter: { table: { eq: "Venues" }, data: { Status: {eq: "Published"} } }
+        ) {
+          edges {
+            node {
+              fields{
+                slug
+              }
+              data {
+                Name
+                Description
+                City
+              }
+            }
+          }
+        }
+      }
+    `, { dateFormat: siteConfig.dateFormat}
+  );
+
+  if (venuesQuery.errors) {
+    console.error(venuesQuery.errors);
+    throw venuesQuery.errors;
+  }
+
+
+  const venueEdges = venuesQuery.data.allAirtable.edges;
+  console.log({venueEdges});
+
+  venueEdges.forEach((venue, index) => {
+    if (venue.node.data.City){
+      citySet.add(venue.node.data.City);
+    }
+
+
+    const venueSlug = createVenueSlug(venue.node)
+    console.log(venueSlug);
+
+    createPage({
+      path: venueSlug,
+      component: venuePage,
+      context: {
+        venue: venue.node.data.Name,
+        dateFormat: siteConfig.dateFormat,
+        today: new Date(),
+        slug: venueSlug,
+      }
+    });
+  });
+
+
+
 };
 
 

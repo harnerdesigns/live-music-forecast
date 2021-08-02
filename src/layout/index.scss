@@ -68,3 +68,11 @@ small,
     display: block;
     margin: 3rem auto;
 }
+
+
+
+.submit-container{
+    max-width: 50%;
+    margin: 0 auto;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 95%);
+}

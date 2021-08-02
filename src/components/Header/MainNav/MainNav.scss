@@ -14,6 +14,10 @@
         font-weight: 900;
         color: #000;
 
+        &[aria-current]{
+            border-bottom: 5px solid var(--red);
+        }
+
         &:hover{
             background: #eee;
         }
@@ -21,6 +25,11 @@
         &.button {
             background: var(--yellow);
             padding: 1rem 2rem;
+
+            &[aria-current]{
+                border-bottom: none;
+
+            }
 
             &:hover{
                 opacity: 0.6;

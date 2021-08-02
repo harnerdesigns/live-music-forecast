@@ -87,7 +87,7 @@ const EventCard = ({ event }) => {
             );
           })}
 
-        {event.genres.map((genre) => (
+        {event.genres && event.genres.map((genre) => (
           <div className={"event__tag event__tag--" + _.camelCase(genre)}>
             <FontAwesomeIcon fixedWidth icon={genreIcons[genre] || "music"} />
             {genre}
