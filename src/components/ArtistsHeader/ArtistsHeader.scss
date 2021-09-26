@@ -1,0 +1,100 @@
+$spotify: #1db954;
+$facebook: #3b5999;
+$twitter: #55acee;
+$polywork: #40be88;
+$instagram: #e4405f;
+$dribbble: #ea4c89;
+$github: #111;
+$behance: #1769ff;
+$devto: #000;
+$producthunt: #da552f;
+$soundcloud: #ff7700;
+$amazon: #FF9900;
+
+.artist-header {
+    width: 100%;
+    display: grid;
+    grid-gap: 2rem;
+    margin: 2rem auto;
+
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+
+    
+}
+
+
+.artist-page__links-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    grid-gap: 1rem;
+    justify-content: space-around;
+    width: 85%;
+    margin: 0 auto;
+
+    .artist-link {
+        color: #000;
+        text-decoration: none;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        // font-size: 0rem;
+        transition: 300ms;
+        top: 0;
+        position: relative;
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: var(--border-radius);
+        svg {
+            height: 3rem;
+        }
+        &:hover {
+            top: -0.2rem;
+        }
+
+        &--spotify {
+            &:hover {
+                background: $spotify;
+                color: #fff;
+            }
+        }
+
+        &--amazon {
+            &:hover {
+                background: $amazon;
+                color: #fff;
+            }
+        }
+
+
+        &--soundcloud {
+            &:hover {
+                background: $soundcloud;
+                color: #fff;
+            }
+        }
+
+        &--facebook {
+            &:hover {
+                background: $facebook;
+                color: #fff;
+            }
+        }
+        &--instagram {
+            &:hover {
+                background: $instagram;
+                color: #fff;
+            }
+        }
+        &--twitter {
+            &:hover {
+                background: $twitter;
+                color: #fff;
+            }
+        }
+    }
+}

@@ -7,13 +7,15 @@ class SEO extends Component {
   render() {
     const { postNode, postPath, postSEO } = this.props;
     let title;
+    let Name;
     let description;
     let image;
     let postURL;
     let author;
+    let postMeta
     if (postSEO) {
-      const postMeta = postNode.data;
-      ({ title } = postMeta);
+      postMeta = postNode.data;
+      ({ Name } = postMeta);
       image = postMeta.image ? postMeta.image[0].url : "";
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
     } else {
@@ -68,7 +70,7 @@ class SEO extends Component {
     return (
       <Helmet>
         {/* General tags */}
-        <title>{title}</title>
+        <title>{Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "") + ` | ${config.siteTitle}`}</title>
         <meta name="description" content={description} />
         <meta name="image" content={image} />
 

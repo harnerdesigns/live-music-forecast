@@ -11,21 +11,6 @@ const getPostList = (postEdges) => {
   const postList = [];
 
   postEdges.forEach((postEdge) => {
-    let args = {
-      path: postEdge.node.fields.slug,
-      tags: postEdge.node.data.Tags,
-      category: postEdge.node.data.Category,
-      name: postEdge.node.data.Name,
-      startDate: postEdge.node.data.StartDate,
-      endDate: postEdge.node.data.EndDate,
-      doorsTime: postEdge.node.data.DoorsTime,
-      featured: postEdge.node.data.Featured,
-      images: postEdge.node.data.Image,
-      genres: postEdge.node.data.Name__from_Genre_,
-      venue_city: postEdge.node.data.Venue_City,
-      venue_name: postEdge.node.data.Venue_Name,
-      description: postEdge.node.data.Description,
-    };
     if (
       postList[
         moment(postEdge.node.data.StartDate).format(siteConfig.dateFormat)
@@ -33,11 +18,11 @@ const getPostList = (postEdges) => {
     ) {
       postList[
         moment(postEdge.node.data.StartDate).format(siteConfig.dateFormat)
-      ].push(args);
+      ].push(postEdge);
     } else {
       postList[
         moment(postEdge.node.data.StartDate).format(siteConfig.dateFormat)
-      ] = [args];
+      ] = [postEdge];
     }
   });
   console.log({ postList });
@@ -81,7 +66,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
           <div className="forecast__scroller">
             {/* Your post list here. */
             postList[day.date] ? (
-              postList[day.date].map((day) => <EventCard event={day} />)
+              postList[day.date].map((day) => <EventCard event={day.node} />)
             ) : (
               <h4 className="empty-day">
                 😢
@@ -93,8 +78,10 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
       ))}
       {showButton ? (
         <Link to="/calendar" className="calendar-link">
-          <FontAwesomeIcon icon="calendar" />
+          <span className="calendar-link__content">
+            <FontAwesomeIcon icon="calendar" />
           See The Whole Calendar &raquo;
+            </span>
         </Link>
       ) : null}
     </section>

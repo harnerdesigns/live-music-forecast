@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { graphql } from 'gatsby';
 import Helmet from "react-helmet";
 import Layout from "../layout";
 import config from "../../data/SiteConfig";
@@ -8,7 +9,7 @@ class BrowsePage extends Component {
 
   
   render() {
-    const postEdges = this.props.data.allAirtable.edges;
+    const postEdges = this.props.data.events.edges;
 
     return (
       <Layout>
@@ -26,10 +27,10 @@ export default BrowsePage;
 
 export const pageQuery = graphql`
 query BrowseQuery($today: Date!) {
-  allAirtable(
+  events: allAirtable(
     limit: 2000
     sort: {fields: [data___StartDate, data___Featured], order: DESC}
-    filter: {data: {Status: {eq: "Published"}, StartDate: {lte: $today}, EndDate: {lte: $today}}}
+    filter: {data: {Status: {eq: "Published"}, StartDate: {lte: $today}}}
   ) {
     edges {
       node {
@@ -41,14 +42,13 @@ query BrowseQuery($today: Date!) {
           EndDate
           DoorsTime
           Name
+          Subtitle
           Description
           Tags
           Featured
           Image{
             url
           }
-          Genre
-          Name__from_Genre_
           Venue_City
           Venue_Name
         }

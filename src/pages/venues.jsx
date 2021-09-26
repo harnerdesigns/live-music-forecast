@@ -33,8 +33,8 @@ export const pageQuery = graphql`
   query VenuesQuery {
     allAirtable(
       limit: 2000
-      sort: { fields: [data___Featured, data___Name], order: ASC }
-      filter: { table: { eq: "Venues" } }
+      sort: { fields: [data___EventCount], order: DESC }
+      filter: { table: { eq: "Venues" }, data: {Status: {eq: "Published"}, EventCount: {gt: 0}} }
     ) {
       edges {
         node {
@@ -46,6 +46,8 @@ export const pageQuery = graphql`
             Name
             Description
             City
+            AccentColor
+            EventCount
             Logo {
               url
             }

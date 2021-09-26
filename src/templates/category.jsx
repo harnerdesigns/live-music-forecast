@@ -24,18 +24,17 @@ export default class CategoryTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query CategoryPage($category: [String], $dateFormat: String) {
+  query CategoryPage($dateFormat: String) {
     allAirtable(
       limit: 1000
       sort: { fields: [data___StartDate], order: DESC }
-      filter: { data : { Genre: { in: $category }, Status: {eq: "Published"} } }
     ) {
       totalCount
       edges {
         node {
           data {
             Name
-            Genre
+            
             StartDate(formatString: $dateFormat)
             EndDate(formatString: $dateFormat)
           }

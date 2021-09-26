@@ -9,7 +9,7 @@ const MainNav = () => {
         <nav id="mainNav" class="nav__wrapper">
             <Link to="/browse" className="nav__item">Browse</Link>
             <Link to="/venues" className="nav__item">Venues</Link>
-            <Link className="nav__item">Artists</Link>
+            <Link to="/artists" className="nav__item">Artists</Link>
             <Link to="/submit" className="nav__item button">Submit An Event</Link>
         </nav>
     )

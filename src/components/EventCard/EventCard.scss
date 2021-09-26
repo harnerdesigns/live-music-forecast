@@ -1,7 +1,9 @@
 .event__card {
     width: 100%;
-    background: #fff;
+    background: var(--dark-blue);
+
     padding: 0.5rem;
+    
 
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
@@ -11,8 +13,11 @@
     align-items: center;
     grid-gap: 0.5rem;
     transition: transform 100ms;
-    &:hover{
-        transform: translate(  0, -5px);
+    a{
+        text-decoration: none;
+    }
+    &:hover {
+        transform: translate(0, -5px);
     }
     .event__link {
         position: absolute;
@@ -20,16 +25,16 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 14;
     }
 
     .event__image-wrapper {
         width: 100%;
         align-self: stretch;
+        max-height: 60vh;
     }
 
     .event__image {
-        width: auto;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -40,19 +45,30 @@
         align-items: center;
         justify-content: flex-start;
         grid-template-columns: 1fr;
-        grid-gap: 0.5rem;
+        grid-gap: 0.25rem;
     }
 
     .event__name {
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.2;
+        word-wrap: anywhere;
+        hyphens: auto;
+    }
+    .event__subtitle {
+        margin: 0;
+        font-weight: 400;
+        font-size: 1rem;
+        margin-left: 1ch;
+        color: #fff;
     }
 
     .event__venue-name {
         margin: 0;
         font-weight: 300;
         font-style: italic;
-        font-size: 1.15rem;
+        font-size: 0.8rem;
+        color: #fff;
     }
 
     .event__time-wrapper {
@@ -65,7 +81,27 @@
         display: none;
     }
 
-    .blue-border{
+    .event__ticket-button {
+        width: 100%;
+        z-index: 15;
+        padding: 1rem;
+        text-align: center;
+
+        background: var(--yellow);
+        color: #000;
+        font-weight: 900;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        transition: 300ms;
+
+        &:hover {
+            transition: 100ms;
+
+            opacity: 0.6;
+        }
+    }
+
+    .blue-border {
         margin: 1rem auto;
     }
 
@@ -73,7 +109,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         grid-gap: 0 0.5em;
         grid-column: 1 / -1;
 
@@ -85,10 +121,10 @@
             padding: 0.25rem;
             text-align: center;
             border: 2px solid transparent;
-            color: #888;
+            color: #fff;
             border-radius: var(--border-radius);
             svg {
-                color: #000;
+                color: #fff;
                 height: 1rem;
                 margin-bottom: 0.25em;
             }
@@ -99,12 +135,15 @@
             &--blues {
                 border-color: #00f;
                 color: #00f;
+                background: var(--black);
+
                 svg {
                     color: inherit;
                 }
             }
             &--free {
                 border-color: rgba(76, 175, 80, 1);
+                background: var(--black);
 
                 color: rgba(76, 175, 80, 1);
                 svg {
@@ -114,6 +153,15 @@
             &--metal {
                 border-color: #f00;
                 color: #f00;
+                background: var(--black);
+                svg {
+                    color: inherit;
+                }
+            }
+
+            &--sold-out{
+                color: #fff;
+                background: #f00;
                 svg {
                     color: inherit;
                 }
@@ -125,112 +173,7 @@
         border-top: 20px solid var(--blue);
         border-bottom: 20px solid var(--blue);
         grid-template-columns: 1fr;
-
-        // clip-path: polygon(
-        //     0 0,
-        //     2% 1%,
-        //     4% 0,
-        //     6% 1%,
-        //     8% 0,
-        //     10% 1%,
-        //     12% 0,
-        //     14% 1%,
-        //     16% 0,
-        //     18% 1%,
-        //     20% 0,
-        //     22% 1%,
-        //     24% 0,
-        //     26% 1%,
-        //     28% 0,
-        //     30% 1%,
-        //     32% 0,
-        //     34% 1%,
-        //     36% 0,
-        //     38% 1%,
-        //     40% 0,
-        //     42% 1%,
-        //     44% 0,
-        //     46% 1%,
-        //     48% 0,
-        //     50% 1%,
-        //     52% 0,
-        //     54% 1%,
-        //     56% 0,
-        //     58% 1%,
-        //     60% 0,
-        //     62% 1%,
-        //     64% 0,
-        //     66% 1%,
-        //     68% 0,
-        //     70% 1%,
-        //     72% 0,
-        //     74% 1%,
-        //     76% 0,
-        //     78% 1%,
-        //     80% 0,
-        //     82% 1%,
-        //     84% 0,
-        //     86% 1%,
-        //     88% 0,
-        //     90% 1%,
-        //     92% 0,
-        //     94% 1%,
-        //     96% 0,
-        //     98% 1%,
-        //     100% 0,
-        //     100% 100%,
-        //     98% 99%,
-        //     96% 100%,
-        //     94% 99%,
-        //     92% 100%,
-        //     90% 99%,
-        //     88% 100%,
-        //     86% 99%,
-        //     84% 100%,
-        //     82% 99%,
-        //     80% 100%,
-        //     78% 99%,
-        //     76% 100%,
-        //     74% 99%,
-        //     72% 100%,
-        //     70% 99%,
-        //     68% 100%,
-        //     66% 99%,
-        //     64% 100%,
-        //     62% 99%,
-        //     60% 100%,   
-        //     58% 99%,
-        //     56% 100%,
-        //     54% 99%,
-        //     52% 100%,
-        //     50% 99%,
-        //     48% 100%,
-        //     46% 99%,
-        //     44% 100%,
-        //     42% 99%,
-        //     40% 100%,
-        //     38% 99%,
-        //     36% 100%,
-        //     34% 99%,
-        //     32% 100%,
-        //     30% 99%,
-        //     28% 100%,
-        //     26% 99%,
-        //     24% 100%,
-        //     22% 99%,
-        //     20% 100%,
-        //     18% 99%,
-        //     16% 100%,
-        //     14% 99%,
-        //     12% 100%,
-        //     10% 99%,
-        //     8% 100%,
-        //     6% 99%,
-        //     4% 100%,
-        //     2% 99%,
-        //     0% 100%
-        // );
-        // filter: drop-shadow(0 0 3px rgba(0,0,0,0.2));
+        order: -1;
 
         &::before {
             content: "Featured";
@@ -238,8 +181,8 @@
             top: 0;
             right: 0;
             padding: 0.25em;
-            background: #ccc;
-            color: #999;
+            background: var(--darker-blue);
+            color: #fff;
             z-index: 2;
         }
 
@@ -259,13 +202,20 @@
             object-fit: cover;
         }
         .event__name {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .event__subtitle{
+            font-size: 1.25rem;
             text-align: center;
         }
 
         .event__venue-name {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.15rem;
+            margin: 0.5em auto;
+
         }
 
         .event__time-wrapper {
@@ -281,11 +231,22 @@
 }
 
 .forecast__day--Today {
+    .event__name {
+        font-size: 2rem;
+    }
+
+    .event__subtitle{
+        font-size: 1.25rem;
+    }
     .event__card--featured {
-        border-top: 40px solid var(--blue);
-        border-bottom: 40px solid var(--blue);
+        border-top: 30px solid var(--blue);
+        border-bottom: 30px solid var(--blue);
         .event__name {
             font-size: 4em;
+        }
+
+        .event__subtitle{
+            font-size: 2em;
         }
     }
 }
@@ -308,6 +269,9 @@
     &--metal {
         background: #000;
         border-color: #f00;
+        color: #f00;
+    }
+    &--sold-out{
         color: #f00;
     }
 }

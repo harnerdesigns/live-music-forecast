@@ -9,33 +9,47 @@ class BrowseGrid extends Component {
   render() {
     const events = this.props.events;
 
-    let cities = events.map((event)=> {
-      console.log({event})
-      return event.node.data.Venue_City
-    })
-    console.log({cities});
+    let cities = events.map((event) => {
+      console.log({ event });
+      return event.node.data.Venue_City;
+    });
 
-    cities = _.uniq(cities.flat());
+    cities = cities.flat();
 
-    const cityMap = cities.map((city)=>{
-      return(<Link
-            className={"city-grid__item city-grid__item--"+ _.kebabCase(city)}
-            to={"/browse/" +  _.kebabCase(city)}
-          >
-            <label>{city}</label>
-          </Link>)
+    let countObj = {};
 
-    })
+    let countFunc = (keys) => {
+      countObj[keys] = ++countObj[keys] || 1;
+    };
+
+    cities = cities.forEach(countFunc);
+
+    console.log({countObj})
+
+    cities = _.sortBy(countObj);
+    console.log({cities})
+
+
+    const cityMap = cities.map((city) => {
+      return (
+        <Link
+          className={"city-grid__item city-grid__item--" + _.kebabCase(city)}
+          to={"/browse/" + _.kebabCase(city)}
+        >
+          <label>{city}</label>
+        </Link>
+      );
+    });
     return (
       <div className="browse-grid">
-        <PageTitle title="Browse Shows By City, Genre, or Date" subtitle="Find Great Live Music All Over The State" />
+        <PageTitle
+          title="Browse Shows By City, Genre, or Date"
+          subtitle="Find Great Live Music All Over The State"
+        />
         <img className="blue-border" src={BlueBorder} />
-        <div className="city-grid__wrapper">
-          {cityMap}
-        </div>
+        <div className="city-grid__wrapper">{cityMap}</div>
         <Link to="/submit">Don't See Your City? Submit an Event!</Link>
         <img className="blue-border" src={BlueBorder} />
-
       </div>
     );
   }

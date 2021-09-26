@@ -26,7 +26,7 @@ const VenueCard = ({ node }) => {
 
       {venue.Logo && (
         <div className="venue__image-wrapper">
-          <img className="venue__image" src={venue.Logo[0].url} />
+          <img style={{backgroundColor: venue.AccentColor}} className="venue__image" src={venue.Logo[0].url} />
         </div>
       )}
 

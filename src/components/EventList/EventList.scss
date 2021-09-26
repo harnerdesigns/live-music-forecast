@@ -1,0 +1,26 @@
+.event__list {
+
+    max-width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    margin: 2rem auto;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    .event__card{
+
+
+        &--featured{
+            grid-row: auto / span 2;
+        }
+    }
+
+    .no-upcoming-shows{
+        text-align: center;
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #8f8f8f;
+    }
+}

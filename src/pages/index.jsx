@@ -15,8 +15,8 @@ class Index extends React.Component {
     return (
       <Layout>
         <div className="index-container">
-          <Helmet title={config.siteTitle} />
           <SEO />
+          <Helmet title={config.siteTitle} />
           <ForecastGrid daysToShow={10} postEdges={postEdges} showButton={true} />
         </div>
       </Layout>
@@ -31,8 +31,8 @@ export const pageQuery = graphql`
 query IndexQuery($today: Date!) {
   allAirtable(
     limit: 2000
-    sort: {fields: [data___StartDate, data___Featured], order: DESC}
-    filter: {data: {Status: {eq: "Published"}, StartDate: {lte: $today}, EndDate: {lte: $today}}}
+    sort: {fields: [data___StartDate, data___Featured], order: [ASC, DESC]}
+    filter: {data: {Status: {eq: "Published"}, StartDate: {lte: $today}}}
   ) {
     edges {
       node {
@@ -44,16 +44,25 @@ query IndexQuery($today: Date!) {
           EndDate
           DoorsTime
           Name
+          Subtitle
           Description
           Tags
           Featured
+          TicketURL
+          SoldOut
           Image{
             url
           }
-          Genre
-          Name__from_Genre_
-          Venue_City
-          Venue_Name
+          Artist_Genres
+          Venues {
+            fields{
+              slug
+            }
+            data {
+              Name
+              City
+            }
+          }
         }
       }
     }

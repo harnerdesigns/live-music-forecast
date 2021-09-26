@@ -1,0 +1,24 @@
+import React from "react";
+import { Link } from "gatsby";
+import "./EventList.scss";
+import _ from "lodash";
+import EventCard from "../EventCard/EventCard";
+
+const EventList = ({ eventNodes }) => {
+  let eventMap =
+    eventNodes.length >= 1 ? (
+      eventNodes.map((eventNode) => {
+        return <EventCard event={eventNode.node} showDate />;
+      })
+    ) : (
+      <h2 className="no-upcoming-shows">
+        😢
+        <br />
+        No Upcoming Shows
+      </h2>
+    );
+
+  return <section className={"event__list"}>{eventMap}</section>;
+};
+
+export default EventList;

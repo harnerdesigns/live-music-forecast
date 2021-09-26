@@ -42,7 +42,10 @@ import {
   faMapMarkerAlt,
   faDollarSign,
   faMusic,
-  faTicketAlt
+  faTicketAlt,
+  faBan,
+  faPhoneAlt,
+  faDesktop
 } from "@fortawesome/free-solid-svg-icons"
 
 config.autoAddCss = false
@@ -90,5 +93,8 @@ library.add(
   faMapMarkerAlt,
   faDollarSign,
   faMusic,
-  faTicketAlt
+  faTicketAlt,
+  faBan,
+  faPhoneAlt,
+  faDesktop
 )

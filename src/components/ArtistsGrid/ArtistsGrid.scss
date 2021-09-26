@@ -1,0 +1,41 @@
+.artist__grid {
+    max-width: 50%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    grid-gap: 2rem;
+    margin: 2rem auto;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    h2 {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+}
+
+.letter-link-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 50%;
+    margin: 0 auto;
+
+    a.letter {
+        color: #fff;
+        text-decoration: none;
+        border-radius: var(--border-radius);
+        padding: 0.25rem;
+
+        &:hover {
+            background: var(--red);
+        }
+
+        &.letter--active {
+            font-weight: bold;
+            background: var(--blue);
+            color: #fff;
+        }
+    }
+}

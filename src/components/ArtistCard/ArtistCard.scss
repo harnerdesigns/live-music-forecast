@@ -1,0 +1,72 @@
+.artist__card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin: auto;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    min-height: 25vh;
+    text-align: center;
+    width: 100%;
+
+    .artist__image-wrapper {
+        width: 100%;
+        padding-bottom: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        border-radius: 100%;
+    }
+
+    .artist__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        transition: 300ms;
+        will-change: transform;
+    }
+
+    .artist__name {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 auto;
+    }
+    
+    .aritst__bio{
+        display: none;
+    }
+
+    &:hover{
+        .artist__image{
+            transform: scale(1.1);
+        }
+    }
+
+    &--large{
+
+        grid-template-columns: 1fr 1fr;
+
+        width: 50%;
+
+        .artist__name{
+            font-size: 4rem;
+        }
+
+        .aritst__bio{
+            display: block;
+            color: #000;
+            text-align: left;
+            padding: 1rem;
+            line-height: 1.25;
+            a{
+                display: none;
+            }
+        }
+    }
+}

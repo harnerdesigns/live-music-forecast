@@ -98,5 +98,10 @@
                 background-image: url("../../../images/cities/colorado-springs.webp");
             }
         }
+        &--fort-collins {
+            &:before {
+                background-image: url("../../../images/cities/fort-collins.webp");
+            }
+        }
     }
 }
