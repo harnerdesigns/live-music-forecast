@@ -6,6 +6,7 @@ import siteConfig from "../../../data/SiteConfig";
 import EventCard from "../EventCard/EventCard";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
 import { isSet } from "lodash";
+import NewsletterSignup from "../NewsletterSignup/NewsletterSignup";
 
 const getPostList = (postEdges) => {
   const postList = [];
@@ -53,35 +54,44 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
 
   return (
     <section className="forecast__grid">
-      <div className="forecast__header"><span className="forecast__title">
-        {city ? city + "'s" : "Colorado's"} {daysToShow} Day Live Music Forecast:
+      <div className="forecast__header">
+        <span className="forecast__title">
+          {city ? city + "'s" : "Colorado's"} {daysToShow} Day Live Music
+          Forecast:
         </span>
-        </div>
-      {dayArray.map((day) => (
-        <div className={"forecast__day" + ` forecast__day--${day.shortDay}`}>
-          <div className="forecast__meta">
-            <h1>{day.shortDay}</h1>
-            <h2>{day.date}</h2>
+      </div>
+      {dayArray.map((day, i) => (
+        <>
+          <div className={"forecast__day" + ` forecast__day--${day.shortDay}`}>
+            <div className="forecast__meta">
+              <h1>{day.shortDay}</h1>
+              <h2>{day.date}</h2>
+            </div>
+            <div className="forecast__scroller">
+              {
+                /* Your post list here. */
+                postList[day.date] ? (
+                  postList[day.date].map((day) => (
+                    <EventCard event={day.node} />
+                  ))
+                ) : (
+                  <h4 className="empty-day">
+                    😢
+                    <br /> Nothing {day.longDay}
+                  </h4>
+                )
+              }
+            </div>
           </div>
-          <div className="forecast__scroller">
-            {/* Your post list here. */
-            postList[day.date] ? (
-              postList[day.date].map((day) => <EventCard event={day.node} />)
-            ) : (
-              <h4 className="empty-day">
-                😢
-                <br /> Nothing {day.longDay}
-              </h4>
-            )}
-          </div>
-        </div>
+          {i == 4 ? <NewsletterSignup /> : null}
+        </>
       ))}
       {showButton ? (
         <Link to="/calendar" className="calendar-link">
           <span className="calendar-link__content">
             <FontAwesomeIcon icon="calendar" />
-          See The Whole Calendar &raquo;
-            </span>
+            See The Whole Calendar &raquo;
+          </span>
         </Link>
       ) : null}
     </section>

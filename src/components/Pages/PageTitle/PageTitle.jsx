@@ -3,10 +3,10 @@ import "./PageTitle.scss";
 import BlueBorder from "../../../images/blue-border.svg";
 import { Link } from "gatsby";
 
-const PageTitle = ({ title, subtitle, logo, accentColor, children }) => {
+const PageTitle = ({ title, subtitle, logo, accentColor, className, children }) => {
 
     return(
-        <header className={"page-title__wrapper" + (logo ? " has-logo" : "")}>
+        <header className={"page-title__wrapper" + (logo ? " has-logo" : "") + " " + className}>
             {logo && <img style={{backgroundColor: accentColor}} className="page-title__logo" src={logo} />}
             <div className="page-title__content">
 

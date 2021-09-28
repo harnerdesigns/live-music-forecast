@@ -1,0 +1,15 @@
+.newsletter-signup__wrapper{
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-column: 1 / -1;
+    padding: 2rem;
+
+    background: var(--darker-blue);
+    h1{
+        margin: 0;
+    }
+}

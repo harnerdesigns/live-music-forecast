@@ -1,7 +1,7 @@
 const config = {
-  siteTitle: "Colorado Live Music Directory", // Site title.
+  siteTitle: "Colorado Live Music Forecast", // Site title.
   siteTitleShort: "CO Live Music", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
-  siteTitleAlt: "The Record of all the live music happening around Colorado", // Alternative site title for SEO.
+  siteTitleAlt: "The forecast of all the live music happening around Colorado", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
   siteUrl: "https://coloradolivemusicdirectory.com", // Domain of your website without pathPrefix.
   pathPrefix: `/`, // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.

@@ -1,0 +1,17 @@
+.search__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 1rem auto;
+    width: 100%;
+
+    svg {
+        width: 2em;
+        margin-right: 0.5em;
+    }
+
+    .search__input {
+        font-size: 1em;
+    }
+}

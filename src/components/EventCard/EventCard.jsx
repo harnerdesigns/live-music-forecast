@@ -126,13 +126,13 @@ const EventCard = ({
           eventData.Genres.map((genre, index) => {
             if (index > 2) {
               return (
-                <div className={"event__tag event__tag--" + _.camelCase(genre)}>
+                <Link to={`/browse/genres/${genre}`} className={"event__tag event__tag--" + _.camelCase(genre)}>
                   <FontAwesomeIcon
                     fixedWidth
                     icon={genreIcons[genre] || "music"}
                   />
                   {genre}
-                </div>
+                </Link>
               );
             }
           })}
@@ -140,13 +140,13 @@ const EventCard = ({
           eventData.Artist_Genres.map((genre, index) => {
             if (index < 2) {
               return (
-                <div className={"event__tag event__tag--" + _.camelCase(genre)}>
+                <Link to={`/browse/genres/${_.kebabCase(genre)}`} className={"event__tag event__tag--" + _.camelCase(genre)}>
                   <FontAwesomeIcon
                     fixedWidth
                     icon={genreIcons[genre] || "music"}
                   />
                   {genre}
-                </div>
+                </Link>
               );
             }
           })}

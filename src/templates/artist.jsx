@@ -64,8 +64,13 @@ const Artist = ({ pageContext, data }) => {
         {artistData.Facebook && <a className="artist-link artist-link--facebook" target="_blank" rel="noopener noreferrer" href={"https://facebook.com/" + artistData.Facebook}><FontAwesomeIcon fixedWidth icon={['fab', 'facebook']} /> Facebook</a>}
 
         {artistData.Soundcloud && <a className="artist-link artist-link--soundcloud" target="_blank" rel="noopener noreferrer" href={"https://soundcloud.com/" + artistData.Soundcloud}><FontAwesomeIcon fixedWidth icon={['fab', 'soundcloud']} /> Soundcloud</a>}
+
+
+        {artistData.LastFMURL && <a className="artist-link artist-link--last-fm" target="_blank" rel="noopener noreferrer" href={artistData.LastFMURL}><FontAwesomeIcon fixedWidth icon={['fab', 'lastfm']} /> Last.fm</a>}
         </div>
           </div>}
+
+
         </ArtistPageGrid>
         <BlueBorder />
       </div>
@@ -84,11 +89,13 @@ export const pageQuery = graphql`
         Name
         SpotifyID
         SpotifyURL
+        LastFMURL
         Bio
         Twitter
         Instagram
         Facebook
         Soundcloud
+        Genres
         GenresRec {
           data {
             Name

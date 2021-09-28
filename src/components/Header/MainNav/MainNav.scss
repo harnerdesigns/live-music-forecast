@@ -14,6 +14,12 @@
         font-weight: 900;
         color: var(--black);
         transition: 300ms;
+        background: none;
+        border: none;
+
+        svg{
+            width: 1em;
+        }
 
 
         &[aria-current]{
@@ -39,6 +45,10 @@
             &:hover{
                 background: transparentize(#ffd700, 0.4);
             }
+        }
+
+        &--search{
+            font-size: 1.5em;
         }
     }
 }

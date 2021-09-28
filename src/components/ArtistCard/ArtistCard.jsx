@@ -24,6 +24,11 @@ const ArtistCard = ({ artist, large = false }) => {
             dangerouslySetInnerHTML={{ __html: artist.data.Bio }}
           ></div>
         )}
+        {large &&
+          artist.data.GenresRec &&
+          artist.data.GenresRec.map((genre) => {
+            return(<Link to={"/browse/genres/"+_.kebabCase(genre.data.Name)}>{genre.data.Name}</Link>);
+          })}
       </div>
     </Link>
   );

@@ -12,6 +12,7 @@ import "./post.css";
 import styled from "styled-components";
 import EventCard from "../components/EventCard/EventCard";
 import ArtistsGrid from "../components/ArtistsGrid/ArtistsGrid";
+import PageTitle from "../components/Pages/PageTitle/PageTitle";
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -54,10 +55,9 @@ export default class PostTemplate extends React.Component {
             </div>
           </EventHeaderWrapper>
           <EventBody
-            dangerouslySetInnerHTML={{ __html: post.Description }}
+            dangerouslySetInnerHTML={{ __html: post.Description || (post.Artists ? post.Artists[0].data.Bio : null) }}
           ></EventBody>
-
-          {post.Artists && <ArtistsGrid artists={post.Artists} />}
+          {post.Artists && <><PageTitle subtitle={"Artists At The Show"} /><ArtistsGrid artists={post.Artists} /></>}
         </div>
       </Layout>
     );
@@ -93,6 +93,7 @@ export const pageQuery = graphql`
           }
           data{
             Name
+            Bio
             Image{
               url
             }
@@ -187,4 +188,8 @@ const EventBody = styled.div`
   width: 50%;
   padding: 2rem;
   margin: 2rem auto;
+
+  a{
+    display: none;
+  }
 `;

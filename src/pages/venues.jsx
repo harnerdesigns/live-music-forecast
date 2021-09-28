@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import Layout from "../layout";
 import config from "../../data/SiteConfig";
-import BrowseGrid from "../components/Pages/Browse/Browse";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
 import { Link } from "gatsby";
 import VenueCard from "../components/VenueCard/VenueCard";

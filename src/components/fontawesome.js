@@ -45,7 +45,8 @@ import {
   faTicketAlt,
   faBan,
   faPhoneAlt,
-  faDesktop
+  faDesktop,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons"
 
 config.autoAddCss = false
@@ -96,5 +97,6 @@ library.add(
   faTicketAlt,
   faBan,
   faPhoneAlt,
-  faDesktop
+  faDesktop,
+  faSearch
 )
