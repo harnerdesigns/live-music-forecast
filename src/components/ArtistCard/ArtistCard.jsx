@@ -26,8 +26,14 @@ const ArtistCard = ({ artist, large = false }) => {
         )}
         {large &&
           artist.data.GenresRec &&
-          artist.data.GenresRec.map((genre) => {
-            return(<Link to={"/browse/genres/"+_.kebabCase(genre.data.Name)}>{genre.data.Name}</Link>);
+          artist.data.GenresRec.map((genre, i) => {
+            return (
+              <><Link to={"/browse/genres/" + _.kebabCase(genre.data.Name)}>
+                {genre.data.Name}
+              </Link>
+              {i < artist.data.GenresRec.length - 1 ? ", " : ""}
+              </>
+            );
           })}
       </div>
     </Link>

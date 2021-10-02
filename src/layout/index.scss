@@ -110,3 +110,58 @@ small,
         margin: 0 0.5rem;
     }
 }
+
+
+.calendarWrapper{
+    background: var(--darkest-blue);
+
+
+    .modeButton{
+        color:#fff;
+
+        &Active{
+            color: var(--red);
+        }
+    }
+
+    .calendarHeader{
+        h1{
+            color: #fff;
+            text-align: center;
+        }
+
+
+        &Buttons{
+            color: var(--red);
+        }
+    }
+    .calendarDayOfWeek{
+        color: #999;
+    }
+
+    .dayCell{
+        padding: 0.15rem;
+
+        .dayEventsRemaining{
+            color: #999;
+        }
+
+        &:hover{
+            background: rgba(255,255,255,0.1);
+        }
+    }
+
+    .dayDate{
+        .dayText{
+            color: #fff;
+            &.currentDay{
+                color:#fff;
+            }
+        }
+        &.inactiveDay{
+            .dayText{
+                color: var(--blue);
+            }
+        }
+    }
+}

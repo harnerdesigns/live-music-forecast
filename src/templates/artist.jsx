@@ -81,7 +81,7 @@ const Artist = ({ pageContext, data }) => {
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query ArtistPage($artist: String, $today: Date!) {
-    artist: airtable(data: { Name: { eq: $artist } }) {
+    artist: airtable(table: {eq: "Artists"}, data: { Name: { eq: $artist } }) {
       fields {
         slug
       }
@@ -111,6 +111,7 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [data___StartDate], order: ASC }
       filter: {
+        table: {eq: "Events"}
         data: {
           StartDate: { gte: $today }
           Name__from_Artists_: { eq: $artist }
