@@ -1,15 +1,84 @@
-.newsletter-signup__wrapper{
+.newsletter-signup {
+    &__wrapper {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        grid-template-columns: 1fr auto;
+        grid-column: 1 / -1;
+        padding: 2rem;
+        grid-gap: 2vw;
+        width: 75%;
+        margin: 0 auto;
+        position: relative;
+        &:after{
+            content: '';
+            width: 99vw;
+            height: 100%;
+            background: radial-gradient(closest-side at 50% 50%, transparentize(#002868, 0.1), transparentize(#002868, 1));
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
 
+        // background: var(--darker-blue);
+        h1, h2 {
+            margin: 0;
+        }
+        img {
+            display: block;
+            align-self: center;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            min-width: 15vw;
+            object-fit: contain;
+        }
+    }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &__text-wrapper {
+        display: grid;
+        grid-template-columns: 1fr ;
+        align-items: center;
+        justify-content: center;
+        grid-gap: 0.5rem;
 
-    grid-column: 1 / -1;
-    padding: 2rem;
+        h2{
+            font-weight: 400;
+        }
 
-    background: var(--darker-blue);
-    h1{
+        .finePrint{
+            font-style: italic;
+            margin: 0;
+        }
+    }
+}
+
+#mc_embed_signup {
+    width: 75%;
+    margin: 1rem 0 0;
+    #mc_embed_signup_scroll {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        font-size: 2rem;
+    }
+    input.email {
+        width: 100%;
+        font-size: 1.5rem;
+        padding: 0.5rem 1rem;
+
+    }
+    input.button{
+        font-size: 1.25rem;
+        width: 100%;
+        height: 100%;
         margin: 0;
+        border-radius: 0;
+        border: none;
+        background: var(--red);
+        color: #fff;
     }
 }
