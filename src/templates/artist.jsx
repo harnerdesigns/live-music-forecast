@@ -157,11 +157,17 @@ export const pageQuery = graphql`
 export default Artist;
 
 const ArtistPageGrid = styled.div`
-  width: 50%;
+  width: 95%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
   margin: 0 auto;
+
+  @media screen and (min-width: 70rem){
+  grid-template-columns: 1fr 1fr;
+    width: 50%;
+
+  }
 
   iframe{
     width: 100%!important;

@@ -1,18 +1,27 @@
+@import "../../scss/mixins";
 header.header {
     background: #fff;
-    border-top: 30px solid var(--blue);
-    border-bottom: 30px solid var(--blue);
+    border-top: 15px solid var(--blue);
+    border-bottom: 15px solid var(--blue);
     color: #000;
     z-index: 9999;
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
     grid-gap: 1rem;
-
+    @include breakpoint(laptop){
+    grid-template-columns: auto 1fr;
+    border-top: 30px solid var(--blue);
+    border-bottom: 30px solid var(--blue);
+    }
     .logo__wrapper {
         width: auto;
         color: #fff;
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .site-title {
         margin: 0;
@@ -22,11 +31,15 @@ header.header {
         padding: 0.5rem 0;
 
         svg {
-            height: 3em;
+            height: 2em;
             width: 60%;
             margin: -100px 0.25em;
             transition: 300ms;
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+            @include breakpoint(laptop){
+            height: 3em;
+
+            }
         }
         img {
             transition: 300ms;

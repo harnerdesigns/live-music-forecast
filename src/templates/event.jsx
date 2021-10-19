@@ -137,10 +137,16 @@ const EventHeaderWrapper = styled.section`
   }
 
   .event__card {
-    width: 50%;
+    width: 90%;
     height: auto;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
     margin: 3rem auto;
+
+    @media screen and (min-width: 70em){
+    width: 50%;
+    grid-template-columns: 1fr 2fr;
+
+    }
 
     .event__name {
       text-align: center;
@@ -185,9 +191,16 @@ const EventHeaderWrapper = styled.section`
 `;
 
 const EventBody = styled.div`
-  width: 50%;
+  width: 100%;
   padding: 2rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
+
+  @media screen and (min-width: 70em){
+
+    width: 50%;
+    margin: 2rem auto;
+
+  }
 
   a{
     display: none;

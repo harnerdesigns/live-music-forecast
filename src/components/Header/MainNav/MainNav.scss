@@ -1,8 +1,29 @@
+@import "../../../scss/mixins";
 .nav__wrapper {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-direction: column;
+
+    @include breakpoint(laptop) {
+        flex-direction: row;
+    }
+    @include breakpoint(mobileonly) {
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        bottom: -15px;
+        transform: translateY(100%);
+        z-index: 999999999999;
+        background: #fff;
+        @include card(4);
+        transition: 300ms;
+    }
+    &--open {
+        display: flex;
+        min-height: 25vh;
+    }
     .nav__item {
         width: auto;
         height: 100%;
@@ -17,38 +38,68 @@
         background: none;
         border: none;
 
-        svg{
+        @include breakpoint(mobileonly) {
+            width: 100%;
+        }
+
+        svg {
             width: 1em;
         }
 
-
-        &[aria-current]{
+        &[aria-current] {
             border-bottom: 5px solid var(--red);
         }
 
-        &:hover{
+        &:hover {
             background: transparentize(#eee, 0.6);
             transition: 100ms;
-
         }
 
         &.button {
             background: var(--yellow);
             color: var(--black);
             padding: 1rem 2rem;
+            margin: 0;
 
-            &[aria-current]{
+            &[aria-current] {
                 border-bottom: none;
-
             }
 
-            &:hover{
+            &:hover {
                 background: transparentize(#ffd700, 0.4);
             }
         }
 
-        &--search{
+        &--search {
             font-size: 1.5em;
         }
+    }
+}
+
+#mobile-nav__toggle {
+    display: none;
+
+    @include breakpoint(mobileonly) {
+        display: block;
+        width: 2rem;
+        margin-left: auto;
+        margin-right: 1rem;
+        cursor: pointer;
+        transition: 300ms;
+        &:hover {
+            opacity: 0.3;
+            transition: 100ms;
+        }
+    }
+}
+
+.mobile-nav__toggle--open {
+    color: var(--red);
+    animation: rotate 300ms;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(259deg);
     }
 }

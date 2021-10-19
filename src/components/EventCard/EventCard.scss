@@ -1,19 +1,20 @@
+@import "../../scss/mixins";
 .event__card {
     width: 100%;
     background: var(--dark-blue);
 
     padding: 0.5rem;
-    
 
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
     align-items: center;
     grid-gap: 0.5rem;
     transition: transform 100ms;
-    a{
+    font-size: 1rem;
+    a {
         text-decoration: none;
     }
     &:hover {
@@ -29,9 +30,12 @@
     }
 
     .event__image-wrapper {
-        width: 100%;
+        width: calc(100% + 0.5rem);
         align-self: stretch;
-        max-height: 60vh;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        margin-top: -0.5rem;
+        margin-bottom: -0.5rem;
     }
 
     .event__image {
@@ -50,7 +54,7 @@
 
     .event__name {
         margin: 0;
-        font-size: 1rem;
+        font-size: 1em;
         line-height: 1.2;
         word-wrap: anywhere;
         hyphens: auto;
@@ -58,7 +62,7 @@
     .event__subtitle {
         margin: 0;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.8em;
         margin-left: 1ch;
         color: #fff;
     }
@@ -67,13 +71,13 @@
         margin: 0;
         font-weight: 300;
         font-style: italic;
-        font-size: 0.8rem;
+        font-size: 0.8em;
         color: #fff;
     }
 
     .event__time-wrapper {
         margin: 0;
-        font-size: 0.8rem;
+        font-size: 0.8em;
         font-weight: 400;
     }
 
@@ -106,12 +110,13 @@
     }
 
     .event__meta-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        display: none;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 
-        font-size: 0.6rem;
+        font-size: 0.6em;
         grid-gap: 0 0.5em;
         grid-column: 1 / -1;
+        justify-content: flex-start;
 
         .event__tag {
             display: flex;
@@ -159,7 +164,7 @@
                 }
             }
 
-            &--sold-out{
+            &--sold-out {
                 color: #fff;
                 background: #f00;
                 svg {
@@ -180,10 +185,11 @@
             position: absolute;
             top: 0;
             right: 0;
-            padding: 0.25em;
+            padding: 0.5em;
             background: var(--darker-blue);
             color: #fff;
             z-index: 2;
+            font-size: 1rem;
         }
 
         .event__image-wrapper {
@@ -202,28 +208,28 @@
             object-fit: cover;
         }
         .event__name {
-            font-size: 1.5rem;
+            font-size: 2em;
             text-align: center;
         }
 
-        .event__subtitle{
-            font-size: 1.25rem;
+        .event__subtitle {
+            font-size: 1.5em;
             text-align: center;
         }
 
         .event__venue-name {
             text-align: center;
-            font-size: 1.15rem;
-            margin: 0.5em auto;
-
+            font-size: 1.5em;
+            margin: 0.5rem auto;
         }
 
         .event__time-wrapper {
+            font-size: 1em;
             text-align: center;
-            font-size: 1rem;
         }
         .event__description {
             display: block;
+            font-size: 1em;
             width: 95%;
             margin: 0 auto;
         }
@@ -231,23 +237,36 @@
 }
 
 .forecast__day--Today {
+    .event__card {
+        font-size: 1.25rem;
+    }
     .event__name {
-        font-size: 2rem;
     }
 
-    .event__subtitle{
-        font-size: 1.25rem;
+    .event__image-wrapper{
+        max-height: 50vh;
+    }
+
+    .event__subtitle {
+        display: block;
+
+    }
+
+    .event__venue-name {
+        display: block;
+
+    }
+    .event__time-wrapper{
+        display: block;
+
     }
     .event__card--featured {
         border-top: 30px solid var(--blue);
         border-bottom: 30px solid var(--blue);
-        .event__name {
-            font-size: 4em;
-        }
-
-        .event__subtitle{
-            font-size: 2em;
-        }
+        font-size: 1.5rem;
+    }
+    .event__meta-wrapper{
+        display: grid;
     }
 }
 
@@ -271,7 +290,7 @@
         border-color: #f00;
         color: #f00;
     }
-    &--sold-out{
+    &--sold-out {
         color: #f00;
     }
 }

@@ -1,16 +1,20 @@
+@import "../../../scss/mixins";
 .page-title__wrapper {
-    padding: 3rem 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    max-width: 80%;
+    max-width: 95%;
+    margin: 0 auto 2rem;
+
+    @include breakpoint(laptop) {
+        padding: 3rem 1rem;
     margin: 0 auto 3rem;
-
-
+    max-width: 80%;
+    }
 
     .page-title__content {
-
         width: auto;
         display: flex;
         align-items: center;
@@ -18,14 +22,21 @@
         flex-direction: column;
 
         h1 {
-            font-size: 5rem;
+            font-size: 2rem;
             text-align: center;
             margin-bottom: 1rem;
+
+            @include breakpoint(laptop) {
+                font-size: 5rem;
+            }
         }
         h2 {
             text-align: center;
-            font-size: 3rem;
+            font-size: 1.5rem;
             margin: 0;
+            @include breakpoint(laptop) {
+                font-size: 3rem;
+            }
         }
 
         p {
@@ -35,10 +46,11 @@
     &.has-logo {
         padding: 3rem;
 
-        .page-title__content{
+        .page-title__content {
             align-items: flex-start;
 
-            h1,h2{
+            h1,
+            h2 {
                 text-align: left;
             }
         }

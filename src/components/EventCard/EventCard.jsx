@@ -94,12 +94,6 @@ const EventCard = ({
             "| Doors @ " + moment(eventData.DoorsTime).format("h:mm A")}
         </h4>
       </div>
-      {eventData.Featured && eventData.Description && (
-        <>
-          <div className="event__description" dangerouslySetInnerHTML={{__html: eventData.Description}}></div>
-          <BlueBorder />
-        </>
-      )}
 
       <div className="event__meta-wrapper">
       {eventData.SoldOut && <div class="event__tag event__tag--sold-out">

@@ -1,13 +1,27 @@
+@import "../../scss/mixins";
+
 .forecast__grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     height: 100%;
     min-height: 50vh;
     align-items: stretch;
-    margin: 2rem;
+    margin: 0;
     grid-gap: 1rem;
     border-bottom: 20px solid #111;
+
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(3, 1fr);
+    margin: 1rem;
+
+    }
+
+    @include breakpoint(laptop) {
+        grid-template-columns: repeat(6, 1fr);
+    margin: 2rem;
+
+    }
 
     .forecast__meta {
         background: var(--red);
@@ -31,12 +45,12 @@
     }
 
     .forecast__header {
-        grid-column: 1 / -1;
         font-size: 2rem;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+        grid-column: 1 / -1;
 
         .forecast__title {
             background: var(--yellow);
@@ -76,7 +90,9 @@
         }
 
         &--Today {
-            grid-column: 1 / span 2;
+            @include breakpoint(laptop) {
+                grid-column: 1 / span 2;
+            }
         }
     }
 
