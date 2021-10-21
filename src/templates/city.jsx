@@ -14,7 +14,7 @@ const City = ({ pageContext, data }) => {
   const postEdges = data.events.edges;
   const venues = data.venues.edges;
   return (
-    <Layout>
+    <Layout showFooterCTA={false}>
       <div className="category-container">
         <Helmet title={`Live Music In ${city} | ${config.siteTitle}`} />
         <PageTitle title={"Live Music In " + city} />

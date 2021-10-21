@@ -11,14 +11,15 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
-    grid-gap: 0.5rem;
-    transition: transform 100ms;
+    grid-gap: 1rem 0.5rem;
+    transition: transform 100ms, background 400ms;
     font-size: 1rem;
     a {
         text-decoration: none;
     }
     &:hover {
         transform: translate(0, -5px);
+        background: var(--blue);
     }
     .event__link {
         position: absolute;

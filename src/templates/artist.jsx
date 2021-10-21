@@ -55,7 +55,7 @@ const Artist = ({ pageContext, data }) => {
         
             {artistData.SpotifyURL && <a className="artist-link artist-link--spotify" target="_blank" rel="noopener noreferrer" href={artistData.SpotifyURL}><FontAwesomeIcon fixedWidth icon={['fab', 'spotify']} /> Spotify</a>}
 
-            <a className="artist-link artist-link--amazon" target="_blank" rel="noopener noreferrer" href={`https://www.amazon.com/s?k=${artistData.Name}&amp;i=digital-music&_encoding=UTF8&tag=colivemusicdir-20`}><FontAwesomeIcon fixedWidth icon={['fab', 'amazon']} /> Amazon</a>
+            <a className="artist-link artist-link--amazon" target="_blank" rel="noopener noreferrer" href={`https://www.amazon.com/s?k=${artistData.Name}&amp;i=digital-music&_encoding=UTF8&tag=colivemusicforecast-20`}><FontAwesomeIcon fixedWidth icon={['fab', 'amazon']} /> Amazon</a>
 
         {artistData.Twitter && <a className="artist-link artist-link--twitter" target="_blank" rel="noopener noreferrer" href={"https://twitter.com/" + artistData.Twitter}><FontAwesomeIcon fixedWidth icon={['fab', 'twitter']} /> Twitter</a>}
 

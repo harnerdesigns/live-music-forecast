@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "gatsby";
 import "./ForecastGrid.scss";
 import moment from "moment";
@@ -38,6 +38,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
   let dayArray = [
     {
       date: today.format(siteConfig.dateFormat),
+      shortDate: today.format('MM/DD'),
       shortDay: "Today",
       longDay: "Today",
     },
@@ -47,6 +48,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
     let newDay = today.add(1, "days");
     dayArray.push({
       date: newDay.format(siteConfig.dateFormat),
+      shortDate: newDay.format('MM/DD'),
       shortDay: newDay.format("ddd"),
       longDay: newDay.format("dddd"),
     });
@@ -62,27 +64,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
       </div>
       {dayArray.map((day, i) => (
         <>
-          <div className={"forecast__day" + ` forecast__day--${day.shortDay}`}>
-            <div className="forecast__meta">
-              <h1>{day.shortDay}</h1>
-              <h2>{day.date}</h2>
-            </div>
-            <div className="forecast__scroller">
-              {
-                /* Your post list here. */
-                postList[day.date] ? (
-                  postList[day.date].map((day) => (
-                    <EventCard event={day.node} />
-                  ))
-                ) : (
-                  <h4 className="empty-day">
-                    😢
-                    <br /> Nothing {day.longDay}
-                  </h4>
-                )
-              }
-            </div>
-          </div>
+          <ForecastDay day={day} postList={postList} />
           {i == 4 ? <NewsletterSignup /> : null}
         </>
       ))}
@@ -99,3 +81,33 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
 };
 
 export default ForecastGrid;
+
+
+const ForecastDay = ({day, postList}) => {
+  const [dayOpen, setDayOpen] = useState(day.shortDay == "Today");
+
+  return(
+    <div className={"forecast__day" + ` forecast__day--${day.shortDay}` + (dayOpen  ? " forecast__day--open" : "")}>
+    <div className="forecast__meta" onClick={()=>{setDayOpen(!dayOpen)}}>
+      <h1>{day.longDay}</h1>
+      <h2>{day.shortDate}</h2>
+      <FontAwesomeIcon className="forecast__caret" icon={dayOpen ? 'caret-down' : 'caret-up'} />
+    </div>
+    <div className="forecast__scroller">
+      {
+        /* Your post list here. */
+        postList[day.date] ? (
+          postList[day.date].map((day) => (
+            <EventCard event={day.node} />
+          ))
+        ) : (
+          <h4 className="empty-day">
+            😢
+            <br /> Nothing {day.longDay}
+          </h4>
+        )
+      }
+    </div>
+  </div>
+  )
+}

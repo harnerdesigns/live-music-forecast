@@ -22,7 +22,8 @@
     }
     &--open {
         display: flex;
-        min-height: 25vh;
+        min-height: 20vh;
+        height: auto;
     }
     .nav__item {
         width: auto;
@@ -40,6 +41,8 @@
 
         @include breakpoint(mobileonly) {
             width: 100%;
+            height: auto;
+            border-top: 1px solid #ccc;
         }
 
         svg {
@@ -47,7 +50,16 @@
         }
 
         &[aria-current] {
-            border-bottom: 5px solid var(--red);
+            border-left: 15px solid var(--red);
+            padding-left: calc(1rem - 15px);
+
+            @include breakpoint(laptop) {
+                border-left: none;
+                padding-left: 1rem;
+                border-bottom: 15px solid var(--red);
+            padding-bottom: calc(1rem - 15px);
+
+            }
         }
 
         &:hover {
@@ -96,6 +108,30 @@
 .mobile-nav__toggle--open {
     color: var(--red);
     animation: rotate 300ms;
+}
+
+.mobile-nav__bg {
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to top, var(--dark-blue), var(--blue));
+    position: absolute;
+    top: calc(100% + 15px);
+    display: block;
+
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: height 600ms, opacity 100ms;
+
+    &--open {
+        opacity: 0.9;
+        pointer-events: all;
+        height: 125vh;
+    }
+
+    @include breakpoint(laptop) {
+        display: none !important;
+    }
 }
 
 @keyframes rotate {

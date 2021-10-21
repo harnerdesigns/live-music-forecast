@@ -13,10 +13,9 @@
         grid-column: 1 / -1;
         text-align: center;
     }
-    @include breakpoint(laptop){
-    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-    max-width: 50%;
-
+    @include breakpoint(laptop) {
+        grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+        max-width: 50%;
     }
 }
 
@@ -24,23 +23,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 
-    max-width: 50%;
-    margin: 0 auto;
+        max-width: 95%;
+        margin: 0 auto;
+
+    @include breakpoint(laptop) {
+        max-width: 50%;
+    }
 
     a.letter {
         color: #fff;
         text-decoration: none;
         border-radius: var(--border-radius);
-        padding: 0.25rem;
+        padding: 0.5rem;
         display: flex;
-        align-items: center; justify-content: center;
+        align-items: center;
+        justify-content: center;
 
+        @include breakpoint(laptop) {
+            padding: 0.25rem;
+        }
         &:hover {
             background: var(--red);
         }
 
-        svg{
+        svg {
             display: inline-block;
             width: 1.25em;
             margin-right: 0.25em;

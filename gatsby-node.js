@@ -1,3 +1,4 @@
+const fs = require("fs")
 const path = require("path");
 const _ = require("lodash");
 const moment = require("moment");
@@ -424,3 +425,102 @@ exports.onCreatePage = ({ page, actions }) => {
     },
   });
 };
+
+
+
+
+
+exports.onPostBuild = async ({ graphql }) => {
+  // Run the GraphQL query (from example above).
+  await graphql(`
+  fragment eventFragment on Airtable {
+    fields {
+      slug
+    }
+    data {
+      StartDate
+      EndDate
+      DoorsTime
+      Name
+      Subtitle
+      Description
+      Tags
+      Featured
+      TicketURL
+      SoldOut
+      Image {
+        url
+      }
+      Artist_Genres
+      Venues {
+        fields {
+          slug
+        }
+        data {
+          Name
+          City
+        }
+      }
+    }
+  }
+  
+  query CalendarIndexQuery {
+    allAirtable(
+      limit: 2000
+      sort: {fields: data___StartDate, order: ASC}
+      filter: {data: {Status: {eq: "Published"}}}
+    ) {
+      edges {
+        node {
+          ...eventFragment
+        }
+      }
+    }
+  }
+  `).then(result => {
+    // A reference to where we are going to put the files. Note that the public
+    // directory already exists because the build has been completed (since
+    // we're in the onPostBuild hook).
+    const postsPath = "./public/events"
+    let dateArray = {}
+
+    // Collect the data for all earworms. This simply digs into the query result
+    // and extracts the objects we care about.
+    const posts = result.data.posts.edges.map(({ node }) => {
+
+      let date = moment(node.data.StartDate).tz('America/Denver');
+      let year = date.format('YYYY');
+      let month = date.format("MM");
+      let day = date.format("DD");
+      
+      console.log({date,year,month,day});
+    })
+
+    // If we don't already have the posts directory inside the public directory,
+    // create it.
+    if (!fs.existsSync(postsPath)) fs.mkdirSync(postsPath)
+
+    // Loop through each (filtered) result from the query and write them to
+    // file.
+    posts.map(post => {
+      // The slug is pulled from the name of the markdown file.
+      const slug = path.basename(
+        post.fileAbsolutePath,
+        path.extname(post.fileAbsolutePath)
+      )
+
+      // We then combine the frontmatter object with the slug and body (the
+      // converted HTML) to form our data object. This will give us the shape we
+      // want as mentioned when we wrote the original markdown file.
+      const data = {
+        ...post.frontmatter,
+        slug: slug,
+        body: post.html
+      }
+
+      // Using the slug as the filename, write a file containing the data
+      // object, after converting it to JSON format.
+      fs.writeFileSync(`${postsPath}/${slug}.json`, JSON.stringify(data))
+    })
+  })
+}

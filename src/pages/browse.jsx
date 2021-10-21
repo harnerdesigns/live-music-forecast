@@ -21,7 +21,7 @@ class BrowsePage extends Component {
           <h1>
             Browse Shows By <a href="#city-grid">City</a>, or <a href="#genre-grid">Genre</a>
           </h1>
-          <h2>Find Great Live Music All Over The State</h2>
+          <h2>Find Great Live Music All Over Colorado</h2>
         </PageTitle>
         <img className="blue-border" src={BlueBorder} />
           <BrowseGrid events={postEdges} />

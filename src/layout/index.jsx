@@ -9,9 +9,8 @@ import Header from "../components/Header/Header";
 import "../components/fontawesome"
 
 
-export default class MainLayout extends React.Component {
-  render() {
-    const { children } = this.props;
+const MainLayout = ({ children, showFooterCTA }) => {
+ 
     return (
       <div>
         <Helmet>
@@ -19,8 +18,10 @@ export default class MainLayout extends React.Component {
         </Helmet>
         <Header/>
         {children}
-        <Footer />
+        <Footer showCTA={showFooterCTA} />
       </div>
     );
-  }
+  
 }
+
+export default MainLayout
