@@ -5,6 +5,12 @@ import config from "../../../data/SiteConfig";
 import defaultOG from "../../images/Default-OG-Image.png"
 
 class SEO extends Component {
+
+  componentDidMount(){
+    const { postNode, postPath, postSEO } = this.props;
+
+    console.log({postNode})
+  }
   render() {
     const { postNode, postPath, postSEO } = this.props;
     let title;
@@ -15,11 +21,14 @@ class SEO extends Component {
     let author;
     let postMeta;
     let ogImage
+
     if (postSEO) {
       postMeta = postNode.data;
       ({ Name } = postMeta);
-      image = postMeta.image ? postMeta.image[0].url : "";
+      title = Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "") + ` | ${config.siteTitle}`;
+      image = postMeta.Image ? postMeta.Image[0].url : defaultOG;
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
+      description = "Check out and get tickets to " + Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "")
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
@@ -87,7 +96,7 @@ class SEO extends Component {
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={ogImage ? ogImage : image} />
+        <meta property="og:image" content={image ? image : ogImage} />
         <meta
           property="fb:app_id"
           content={config.siteFBAppID ? config.siteFBAppID : ""}
@@ -97,11 +106,11 @@ class SEO extends Component {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:creator"
-          content={author && author.twitter ? author.twitter : ""}
+          content={author && author.twitter ? author.twitter : "COLiveMusic"}
         />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={ogImage ? ogImage : image} />
+        <meta name="twitter:image" content={image ? image : ogImage} />
       </Helmet>
     );
   }

@@ -30,8 +30,6 @@ export default class PostTemplate extends React.Component {
     return (
       <Layout>
         <div>
-          <Helmet />
-
           <SEO postPath={slug} postNode={postNode} postSEO />
           <EventHeaderWrapper>
             <EventCard
