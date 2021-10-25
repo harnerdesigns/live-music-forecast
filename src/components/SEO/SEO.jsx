@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
+import defaultOG from "../../images/Default-OG-Image.png"
 
 class SEO extends Component {
   render() {
@@ -21,6 +22,7 @@ class SEO extends Component {
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
+      ogImage = defaultOG;
       image = config.siteLogo;
     }
 
