@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import { Link } from "gatsby";
 import "./ForecastGrid.scss";
-import moment from "moment";
+import moment from "moment-timezone";
 import siteConfig from "../../../data/SiteConfig";
 import EventCard from "../EventCard/EventCard";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
 import { isSet } from "lodash";
 import NewsletterSignup from "../NewsletterSignup/NewsletterSignup";
+
+moment.tz.setDefault("America/Denver");
+
 
 const getPostList = (postEdges) => {
   const postList = [];
@@ -34,9 +37,6 @@ const getPostList = (postEdges) => {
 const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
   const postList = getPostList(postEdges);
   const today = moment(new Date());
-
-
-
 
   let dayArray = [
     {
