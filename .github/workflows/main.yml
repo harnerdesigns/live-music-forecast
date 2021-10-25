@@ -64,6 +64,7 @@ jobs:
           GA: ${{secrets.GA}}
           AIRTABLE_API_KEY: ${{secrets.AIRTABLE_API_KEY}}
           AIRTABLE_BASE: ${{secrets.AIRTABLE_BASE}}
+          GA_ID: ${{secrets.GA_ID}}
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:

@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 const config = {
   siteTitle: "Colorado Live Music Forecast", // Site title.
   siteTitleShort: "CO Live Music", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
@@ -7,6 +11,10 @@ const config = {
   pathPrefix: `/`, // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription: "Live Music Across Colorado", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
+  siteFBAppID: "1XXXXXXXXXXX9", // FB Application ID for using app insights
+  googleAnalyticsID: process.env.GA_ID, // GA tracking ID.
+  disqusShortname: "gatsby-airtable-advanced-starter", // Disqus shortname.
+  postDefaultCategoryID: "Tech", // Default category for posts.
   dateFormat: "MM/DD/YYYY", // Date format for display.
   copyright: "Copyright © 2021", // Copyright string for the footer of the website and RSS feed.
   themeColor: "#c62828", // Used for setting manifest and progress theme colors.
@@ -20,7 +28,7 @@ if (config.pathPrefix === "/") {
   // config.pathPrefix = "";
 } else {
   // Make sure pathPrefix only contains the first forward slash
-  config.pathPrefix = `/${config.pathPrefix.replace(/^\/|\/$/g, "")}`; 
+  config.pathPrefix = `/${config.pathPrefix.replace(/^\/|\/$/g, "")}`;
 }
 
 // Make sure siteUrl doesn't have an ending forward slash
