@@ -27,7 +27,6 @@ const NewsletterSignup = ({ metaArray = [] }) => {
             <div id="mc_embed_signup_scroll">
               <input
                 type="email"
-                value=""
                 name="EMAIL"
                 class="email"
                 id="mce-EMAIL"
