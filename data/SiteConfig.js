@@ -2,10 +2,10 @@ const config = {
   siteTitle: "Colorado Live Music Forecast", // Site title.
   siteTitleShort: "CO Live Music", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: "The forecast of all the live music happening around Colorado", // Alternative site title for SEO.
-  siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
+  siteLogo: "logos/logo-1024.png", // Logo used for SEO and manifest.
   siteUrl: "https://livemusicforecast.com", // Domain of your website without pathPrefix.
   pathPrefix: `/`, // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
-  siteDescription: "Live Music Across Colorado", // Website description used for RSS feeds/meta description tag.
+  siteDescription: "Find Live Music happening in Denver, Colorado Springs, and across the rest of Colorado!", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "1XXXXXXXXXXX9", // FB Application ID for using app insights
   googleAnalyticsID: "G-QL6JM4MBWR", // GA tracking ID.
@@ -14,7 +14,7 @@ const config = {
   dateFormat: "MM/DD/YYYY", // Date format for display.
   copyright: "Copyright © 2021", // Copyright string for the footer of the website and RSS feed.
   themeColor: "#c62828", // Used for setting manifest and progress theme colors.
-  backgroundColor: "#e0e0e0" // Used for setting manifest background color.
+  backgroundColor: "#002868" // Used for setting manifest background color.
 };
 
 // Validate

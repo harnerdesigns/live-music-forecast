@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Header from "../components/Header/Header";
 import "../components/fontawesome"
+import favicon from "../images/logo-1024.png"
 
 
 const MainLayout = ({ children, showFooterCTA }) => {
@@ -15,6 +16,7 @@ const MainLayout = ({ children, showFooterCTA }) => {
       <div>
         <Helmet>
           <meta name="description" content={config.siteDescription} />
+          <link rel="icon" href={favicon} />
         </Helmet>
         <Header/>
         {children}
