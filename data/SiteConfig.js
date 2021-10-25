@@ -1,7 +1,3 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
 const config = {
   siteTitle: "Colorado Live Music Forecast", // Site title.
   siteTitleShort: "CO Live Music", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
@@ -12,7 +8,7 @@ const config = {
   siteDescription: "Live Music Across Colorado", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "1XXXXXXXXXXX9", // FB Application ID for using app insights
-  googleAnalyticsID: process.env.GA_ID, // GA tracking ID.
+  googleAnalyticsID: "G-QL6JM4MBWR", // GA tracking ID.
   disqusShortname: "gatsby-airtable-advanced-starter", // Disqus shortname.
   postDefaultCategoryID: "Tech", // Default category for posts.
   dateFormat: "MM/DD/YYYY", // Date format for display.
