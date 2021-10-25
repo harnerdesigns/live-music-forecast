@@ -13,7 +13,8 @@ class SEO extends Component {
     let image;
     let postURL;
     let author;
-    let postMeta
+    let postMeta;
+    let ogImage
     if (postSEO) {
       postMeta = postNode.data;
       ({ Name } = postMeta);
@@ -86,7 +87,7 @@ class SEO extends Component {
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={ogImage ? ogImage : image} />
         <meta
           property="fb:app_id"
           content={config.siteFBAppID ? config.siteFBAppID : ""}
@@ -100,7 +101,7 @@ class SEO extends Component {
         />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
+        <meta name="twitter:image" content={ogImage ? ogImage : image} />
       </Helmet>
     );
   }
