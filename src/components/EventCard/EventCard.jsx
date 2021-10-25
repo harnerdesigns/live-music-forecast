@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import "./EventCard.scss";
 import moment from "moment";
-import siteConfig from "../../../data/SiteConfig";
 import Slider from "react-slick";
 import _ from "lodash";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
@@ -10,7 +9,6 @@ import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontaw
 import GrayCo from "../../images/gray-co.svg";
 
 import genreIcons from "../genre-icons";
-import BlueBorder from "../BlueBorder/BlueBorder";
 
 const EventCard = ({
   event,
