@@ -160,7 +160,7 @@ const EventHeaderWrapper = styled.section`
     }
     .event__venue-name {
       text-align: center;
-      font-size: 2rem;
+      text-decoration: underline;
       margin: 0 auto 0.5rem;
     }
 
@@ -172,7 +172,8 @@ const EventHeaderWrapper = styled.section`
 
     .event__time-wrapper {
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+
     }
     .event__meta-wrapper {
       display: flex;

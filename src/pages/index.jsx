@@ -17,7 +17,7 @@ class Index extends React.Component {
         <div className="index-container">
           <SEO />
           <Helmet title={config.siteTitle} />
-          <ForecastGrid daysToShow={10} postEdges={postEdges} showButton={true} />
+          <ForecastGrid daysToShow={30} postEdges={postEdges} showButton={false} />
         </div>
       </Layout>
     );

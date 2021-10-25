@@ -18,7 +18,7 @@ const City = ({ pageContext, data }) => {
       <div className="category-container">
         <Helmet title={`Live Music In ${city} | ${config.siteTitle}`} />
         <PageTitle title={"Live Music In " + city} />
-        <ForecastGrid daysToShow={5} postEdges={postEdges} city={city} />
+        <ForecastGrid daysToShow={14} postEdges={postEdges} city={city} />
         <BlueBorder />
 
         <PageTitle title={"Venues In " + city} />

@@ -1,8 +1,11 @@
 const fs = require("fs")
 const path = require("path");
 const _ = require("lodash");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const siteConfig = require("./data/SiteConfig");
+const util = require('util')
+
+const graphqlPostLimit = 2000;
 
 const createEventSlug = (event) => {
   let slug = "";
@@ -81,6 +84,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `
       query {
         allAirtable(
+          limit: ${graphqlPostLimit}
           filter: {
             table: { eq: "Events" }
             data: { Status: { eq: "Published" } }
@@ -171,6 +175,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `
       query {
         allAirtable(
+          limit: ${graphqlPostLimit}
           filter: {
             table: { eq: "Venues" }
             data: { Status: { eq: "Published" } }
@@ -226,7 +231,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const artistsQuery = await graphql(
     `
       query {
-        allAirtable(filter: { table: { eq: "Artists" } }) {
+        allAirtable(limit: ${graphqlPostLimit}, filter: { table: { eq: "Artists" } }) {
           edges {
             node {
               fields {
@@ -358,7 +363,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const genreQuery = await graphql(
     `
     query {
-      allAirtable(filter: { table: { eq: "Genres" } }, sort:{fields:[data___Number_Of_Artists],order: [DESC]}) {
+      allAirtable(limit: ${graphqlPostLimit}, filter:  { table: { eq: "Genres" } }, sort:{fields:[data___Number_Of_Artists],order: [DESC]}) {
         edges {
           node {
             fields {
@@ -468,7 +473,7 @@ exports.onPostBuild = async ({ graphql }) => {
     allAirtable(
       limit: 2000
       sort: {fields: data___StartDate, order: ASC}
-      filter: {data: {Status: {eq: "Published"}}}
+      filter: {table: { eq: "Events" }, data: {Status: {eq: "Published"}}}
     ) {
       edges {
         node {
@@ -486,7 +491,7 @@ exports.onPostBuild = async ({ graphql }) => {
 
     // Collect the data for all earworms. This simply digs into the query result
     // and extracts the objects we care about.
-    const posts = result.data.posts.edges.map(({ node }) => {
+    const posts = result.data.allAirtable.edges.map(({ node }) => {
 
       let date = moment(node.data.StartDate).tz('America/Denver');
       let year = date.format('YYYY');
@@ -494,33 +499,20 @@ exports.onPostBuild = async ({ graphql }) => {
       let day = date.format("DD");
       
       console.log({date,year,month,day});
+      _.set(dateArray, `${year}.${month}.${day}[${node.fields.slug}]`, node)
     })
+
+    console.log(util.inspect(dateArray,false, null, true));
 
     // If we don't already have the posts directory inside the public directory,
     // create it.
     if (!fs.existsSync(postsPath)) fs.mkdirSync(postsPath)
 
-    // Loop through each (filtered) result from the query and write them to
-    // file.
-    posts.map(post => {
-      // The slug is pulled from the name of the markdown file.
-      const slug = path.basename(
-        post.fileAbsolutePath,
-        path.extname(post.fileAbsolutePath)
-      )
 
-      // We then combine the frontmatter object with the slug and body (the
-      // converted HTML) to form our data object. This will give us the shape we
-      // want as mentioned when we wrote the original markdown file.
-      const data = {
-        ...post.frontmatter,
-        slug: slug,
-        body: post.html
-      }
+      // We
 
       // Using the slug as the filename, write a file containing the data
       // object, after converting it to JSON format.
-      fs.writeFileSync(`${postsPath}/${slug}.json`, JSON.stringify(data))
-    })
+      fs.writeFileSync(`${postsPath}/calendar.json`, JSON.stringify(dateArray))
   })
 }

@@ -10,14 +10,24 @@
     margin: 0;
     grid-gap: 1rem;
     border-bottom: 20px solid #111;
+    grid-auto-flow: dense;
 
     @include breakpoint(tablet) {
         grid-template-columns: repeat(3, 1fr);
         margin: 1rem;
     }
 
-    @include breakpoint(laptop) {
+    @include breakpoint(laptop){
+        grid-template-columns: repeat(5, 1fr);
+        margin: 1rem;
+    }
+    @include breakpoint(desktop){
         grid-template-columns: repeat(6, 1fr);
+        margin: 1rem;
+    }
+
+    @include breakpoint(wide) {
+        grid-template-columns: repeat(7, 1fr);
         margin: 2rem;
     }
 
@@ -39,11 +49,12 @@
             opacity: 0.9;
         }
         h1 {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            line-height: 2rem;
             margin: 0;
         }
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin: 0;
             font-weight: 400;
             margin-left: auto;
@@ -52,16 +63,25 @@
         .forecast__caret{
             width: 1rem;
             opacity: 0.8;
+
+            @include breakpoint(laptop){
+                display: none;
+            }
         }
     }
 
     .forecast__header {
-        font-size: 2rem;
+        font-size: 1.5rem;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
         grid-column: 1 / -1;
+
+        @include breakpoint(laptop){
+        font-size: 2rem;
+
+        }
 
         .forecast__title {
             background: var(--yellow);
@@ -104,6 +124,12 @@
         &--Today {
             @include breakpoint(laptop) {
                 grid-column: 1 / span 2;
+            }
+
+            .forecast__meta{
+                h1{
+                    font-size: 2rem;
+                }
             }
         }
 

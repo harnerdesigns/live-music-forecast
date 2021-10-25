@@ -13,7 +13,7 @@ const NewsletterSignup = ({ metaArray = [] }) => {
         <h1 className="newsletter-signup__heading">
           Get the Colorado Live Music Forecast In Your Inbox?
         </h1>
-        <h2>Get the week's live music events every Monday morning.</h2>
+        <h2>Get the week's live music schedule every Monday morning.</h2>
         <div id="mc_embed_signup">
           <form
             action="https://jackharner.us5.list-manage.com/subscribe/post?u=e27a15ea415294e0b0f2c6346&amp;id=45d6419599"

@@ -48,11 +48,13 @@ const EventCard = ({
         (eventData.Featured || featured ? " event__card--featured" : "")
       }
     >
-      {showLink && <Link
-        className="event__link"
-        to={event.fields.slug}
-        key={eventData.Name}
-      />}
+      {showLink && (
+        <Link
+          className="event__link"
+          to={event.fields.slug}
+          key={eventData.Name}
+        />
+      )}
       {showImage && eventData.Image && eventData.Featured && (
         <Slider {...settings}>
           {eventData.Image.map((Image) => (
@@ -80,30 +82,37 @@ const EventCard = ({
         {eventData.Subtitle && (
           <h3 className="event__subtitle">{eventData.Subtitle}</h3>
         )}
-        {eventData.Venues && (
-          <Link to={eventData.Venues[0].fields.slug} >
-            <h3 className="event__venue-name">{eventData.Venues[0].data.Name}</h3>
-            </Link>
-        )}
 
-        <h4 className="event__time-wrapper">
-          {moment(eventData.StartDate).format(
-            showDate ? "MM/DD/YYYY @ h:mm A" : "h:mm A"
-          )}{" "}
-          {eventData.DoorsTime &&
-            "| Doors @ " + moment(eventData.DoorsTime).format("h:mm A")}
-        </h4>
+          <h4 className="event__time-wrapper">
+            {moment(eventData.StartDate).format(
+              showDate ? "MM/DD/YYYY @ h:mm A" : "h:mm A"
+            )}{" "}
+            {eventData.DoorsTime &&
+              "| Doors @ " + moment(eventData.DoorsTime).format("h:mm A")}
+          {eventData.Venues && (
+            <Link className="event__venue-name" to={eventData.Venues[0].fields.slug}>
+                 {(showDate ? '-' : '@')} {eventData.Venues[0].data.Name}
+            </Link>
+          )}
+          </h4>
       </div>
 
       <div className="event__meta-wrapper">
-      {eventData.SoldOut && <div class="event__tag event__tag--sold-out">
-          <FontAwesomeIcon fixedWidth icon="ban" />
-          Sold Out
-        </div>}
-        {eventData.Venues && <Link to={`/browse/${_.kebabCase(eventData.Venues[0].data.City)}`} className="event__tag event__city">
-          <FontAwesomeIcon fixedWidth icon="map-marker-alt" />
-          {eventData.Venues[0].data.City}
-        </Link>}
+        {eventData.SoldOut && (
+          <div class="event__tag event__tag--sold-out">
+            <FontAwesomeIcon fixedWidth icon="ban" />
+            Sold Out
+          </div>
+        )}
+        {eventData.Venues && (
+          <Link
+            to={`/browse/${_.kebabCase(eventData.Venues[0].data.City)}`}
+            className="event__tag event__city"
+          >
+            <FontAwesomeIcon fixedWidth icon="map-marker-alt" />
+            {eventData.Venues[0].data.City}
+          </Link>
+        )}
 
         {eventData.Tags &&
           eventData.Tags.map((tag) => {
@@ -120,7 +129,10 @@ const EventCard = ({
           eventData.Genres.map((genre, index) => {
             if (index > 2) {
               return (
-                <Link to={`/browse/genres/${genre}`} className={"event__tag event__tag--" + _.camelCase(genre)}>
+                <Link
+                  to={`/browse/genres/${genre}`}
+                  className={"event__tag event__tag--" + _.camelCase(genre)}
+                >
                   <FontAwesomeIcon
                     fixedWidth
                     icon={genreIcons[genre] || "music"}
@@ -134,7 +146,10 @@ const EventCard = ({
           eventData.Artist_Genres.map((genre, index) => {
             if (index < 2) {
               return (
-                <Link to={`/browse/genres/${_.kebabCase(genre)}`} className={"event__tag event__tag--" + _.camelCase(genre)}>
+                <Link
+                  to={`/browse/genres/${_.kebabCase(genre)}`}
+                  className={"event__tag event__tag--" + _.camelCase(genre)}
+                >
                   <FontAwesomeIcon
                     fixedWidth
                     icon={genreIcons[genre] || "music"}
@@ -146,23 +161,25 @@ const EventCard = ({
           })}
       </div>
 
-      {(eventData.Featured || showTicket) && !eventData.SoldOut && eventData.TicketURL && (
-        <a
-          href={eventData.TicketURL}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="button event__ticket-button"
-        >
-          Buy Tickets{" "}
-          {eventData.Price &&
-            `(${
-              !isNaN(parseFloat(eventData.Price))
-                ? formatter.format(parseFloat(eventData.Price))
-                : eventData.Price
-            }${eventData.PriceRange ? "+" : ""})`}
-          <FontAwesomeIcon icon="external-link-alt" />
-        </a>
-      )}
+      {(eventData.Featured || showTicket) &&
+        !eventData.SoldOut &&
+        eventData.TicketURL && (
+          <a
+            href={eventData.TicketURL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="button event__ticket-button"
+          >
+            Buy Tickets{" "}
+            {eventData.Price &&
+              `(${
+                !isNaN(parseFloat(eventData.Price))
+                  ? formatter.format(parseFloat(eventData.Price))
+                  : eventData.Price
+              }${eventData.PriceRange ? "+" : ""})`}
+            <FontAwesomeIcon icon="external-link-alt" />
+          </a>
+        )}
     </div>
   );
 };

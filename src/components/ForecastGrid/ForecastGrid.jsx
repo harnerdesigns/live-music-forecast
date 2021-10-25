@@ -35,6 +35,9 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
   const postList = getPostList(postEdges);
   const today = moment(new Date());
 
+
+
+
   let dayArray = [
     {
       date: today.format(siteConfig.dateFormat),
@@ -43,6 +46,16 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
       longDay: "Today",
     },
   ];
+
+  let tomorrow = today.add(1, "days");
+
+  dayArray.push({
+    date: tomorrow.format(siteConfig.dateFormat),
+    shortDate: tomorrow.format('MM/DD'),
+    shortDay: "Tomorrow",
+    longDay: "Tomorrow",
+
+  });
 
   for (let i = 0; i < daysToShow - 1; i++) {
     let newDay = today.add(1, "days");
@@ -53,6 +66,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
       longDay: newDay.format("dddd"),
     });
   }
+
 
   return (
     <section className="forecast__grid">
@@ -65,7 +79,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
       {dayArray.map((day, i) => (
         <>
           <ForecastDay day={day} postList={postList} />
-          {i == 4 ? <NewsletterSignup /> : null}
+          {i == 5 ? <NewsletterSignup /> : null}
         </>
       ))}
       {showButton ? (

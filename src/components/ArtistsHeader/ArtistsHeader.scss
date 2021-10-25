@@ -10,6 +10,7 @@ $devto: #000;
 $producthunt: #da552f;
 $soundcloud: #ff7700;
 $amazon: #FF9900;
+$lastfm: #d92323;
 
 .artist-header {
     width: 100%;
@@ -94,6 +95,12 @@ $amazon: #FF9900;
         &--twitter {
             &:hover {
                 background: $twitter;
+                color: #fff;
+            }
+        }
+        &--last-fm{
+            &:hover{
+                background: $lastfm;
                 color: #fff;
             }
         }
