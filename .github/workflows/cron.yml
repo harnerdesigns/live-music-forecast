@@ -2,7 +2,7 @@ name: Gatsby Cron
 
 on:
   schedule:    
-    - cron: "15 */6 * * *"
+    - cron: 16 */6 * * *
 jobs:
   build:
     runs-on: ubuntu-latest
