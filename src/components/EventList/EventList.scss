@@ -26,6 +26,8 @@
         }
         &:first-child{
             grid-column: auto / span 2;
+            max-width: 80%;
+            margin: 0 auto;
         }
     }
 

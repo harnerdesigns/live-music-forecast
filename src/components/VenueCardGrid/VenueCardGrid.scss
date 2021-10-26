@@ -1,12 +1,18 @@
+@import "../../scss/mixins";
 .venue__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
     max-width: 85%;
     margin: 2rem auto;
     grid-auto-flow: dense;
     min-height: 45vh;
     height: 100%;
+
+    @include breakpoint(laptop){
+    grid-template-columns: 1fr 1fr 1fr;
+
+    }
 }
 
 .filter-input {
@@ -38,7 +44,13 @@
 
 
     &.is-open {
-        width: 45%;
+        width: 100%;
         padding: 0.25rem;
+
+        @include breakpoint(laptop){
+            width: 45%;
+
+
+        }
     }
 }
