@@ -5,6 +5,7 @@ const moment = require("moment-timezone");
 const siteConfig = require("./data/SiteConfig");
 const util = require('util')
 
+moment.tz.setDefault('America/Denver');
 const graphqlPostLimit = 2000;
 
 const createEventSlug = (event) => {
