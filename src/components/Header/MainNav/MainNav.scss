@@ -9,7 +9,7 @@
     @include breakpoint(laptop) {
         flex-direction: row;
     }
-    @include breakpoint(mobileonly) {
+    @include breakpoint(tabletDown) {
         height: 0;
         overflow: hidden;
         position: absolute;
@@ -39,7 +39,7 @@
         background: none;
         border: none;
 
-        @include breakpoint(mobileonly) {
+        @include breakpoint(tabletDown) {
             width: 100%;
             height: auto;
             border-top: 1px solid #ccc;
@@ -91,7 +91,7 @@
 #mobile-nav__toggle {
     display: none;
 
-    @include breakpoint(mobileonly) {
+    @include breakpoint(tabletDown) {
         display: block;
         width: 2rem;
         margin-left: auto;

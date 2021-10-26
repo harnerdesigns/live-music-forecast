@@ -24,6 +24,9 @@
         &--featured{
             grid-row: auto / span 2;
         }
+        &:first-child{
+            grid-column: auto / span 2;
+        }
     }
 
     .no-upcoming-shows{

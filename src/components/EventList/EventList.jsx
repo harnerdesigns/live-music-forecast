@@ -7,8 +7,8 @@ import EventCard from "../EventCard/EventCard";
 const EventList = ({ eventNodes }) => {
   let eventMap =
     eventNodes.length >= 1 ? (
-      eventNodes.map((eventNode) => {
-        return <EventCard event={eventNode.node} showDate />;
+      eventNodes.map((eventNode, i) => {
+        return <EventCard event={eventNode.node} showDate featured={i==0} />;
       })
     ) : (
       <h2 className="no-upcoming-shows">

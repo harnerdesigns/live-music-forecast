@@ -98,7 +98,7 @@ export default ForecastGrid;
 
 
 const ForecastDay = ({day, postList}) => {
-  const [dayOpen, setDayOpen] = useState(day.shortDay == "Today");
+  const [dayOpen, setDayOpen] = useState(day.shortDay == "Today" || day.shortDay == "Tomorrow");
 
   return(
     <div className={"forecast__day" + ` forecast__day--${day.shortDay}` + (dayOpen  ? " forecast__day--open" : "")}>

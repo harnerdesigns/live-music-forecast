@@ -15,6 +15,10 @@
       @media (min-width: 37.5rem) {
         @content;
       }
+    } @else if $point == tabletDown {
+      @media (max-width: 64rem) {
+        @content;
+      }
     } @else if $point == phablet {
       @media (min-width: 37.5rem) {
         @content;
