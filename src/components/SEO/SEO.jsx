@@ -8,8 +8,6 @@ class SEO extends Component {
 
   componentDidMount(){
     const { postNode, postPath, postSEO } = this.props;
-
-    console.log({postNode})
   }
   render() {
     const { postNode, postPath, postSEO } = this.props;

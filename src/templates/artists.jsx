@@ -13,8 +13,6 @@ const ArtistsPage = ({ data, pageContext }) => {
   const featuredArtists = data.featured.edges;
   const indieArtists = data.indie.edges;
 
-  console.log({ pageContext });
-
   let letterLinkList = pageContext.letters.map((letter, i) => {
     return (
       

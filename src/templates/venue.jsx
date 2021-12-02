@@ -10,7 +10,6 @@ import MetaList from "../components/MetaList/MetaList";
 
 const City = ({ pageContext, data }) => {
   const { venue } = pageContext;
-  console.log({ venueContext: pageContext });
   const postEdges = data.events.edges;
   const venueData = data.venue.data;
 

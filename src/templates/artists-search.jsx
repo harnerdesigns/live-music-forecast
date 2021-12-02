@@ -19,7 +19,6 @@ const ArtistsSearchPage = ({ data, pageContext }) => {
     
   }, [search]);
 
-  console.log({ pageContext });
 
   const onSubmit = (e) => {
     e.preventDefault();

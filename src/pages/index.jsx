@@ -10,8 +10,7 @@ import ForecastGrid from "../components/ForecastGrid/ForecastGrid";
 class Index extends React.Component {
   render() {
     const postEdges = this.props.data.allAirtable.edges;
-    console.log({context: this.props.pageContext});
-    console.log({postEdges});
+    
     return (
       <Layout>
         <div className="index-container">

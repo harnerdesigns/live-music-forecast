@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontaw
 import ArtistCard from "../ArtistCard/ArtistCard";
 
 const ArtistsHeader = ({ artist }) => {
-  console.log({ artist });
 
   let artistData = artist.data;
   return (
