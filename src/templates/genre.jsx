@@ -11,7 +11,6 @@ import ArtistsGrid from "../components/ArtistsGrid/ArtistsGrid";
 
 const Genre = ({ pageContext, data }) => {
   const { genre } = pageContext;
-  console.log({ genreContext: pageContext });
   const postEdges = data.events.edges;
   const genreData = data.genre.data;
   const artists = data.artists.edges;

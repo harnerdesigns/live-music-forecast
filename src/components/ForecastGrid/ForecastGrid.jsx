@@ -29,7 +29,6 @@ const getPostList = (postEdges) => {
       ] = [postEdge];
     }
   });
-  console.log({ postList });
 
   return postList;
 };

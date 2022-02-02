@@ -4,7 +4,6 @@ import "./ArtistCard.scss";
 import _ from "lodash";
 
 const ArtistCard = ({ artist, large = false }) => {
-  console.log({ artist });
 
   return (
     <Link

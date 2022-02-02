@@ -32,7 +32,7 @@ const BrowseGrid = ({ events }) => {
   });
 
   const cityMap = cities.map((city) => {
-    if (city != null) {
+    if (city != null && city != "null") {
       return (
         <Link
           className={"city-grid__item city-grid__item--" + _.kebabCase(city)}
@@ -64,14 +64,18 @@ const BrowseGrid = ({ events }) => {
 
   const genreMap = genres.map((genre) => {
     if (search == null || genre.toLowerCase().includes(search.toLowerCase())) {
-      return (
-        <Link
-          className={"genre-grid__item genre-grid__item--" + _.kebabCase(genre)}
-          to={"/browse/genres/" + _.kebabCase(genre)}
-        >
-          <label>{genre}</label>
-        </Link>
-      );
+      if (genre != "null" && genre != null) {
+        return (
+          <Link
+            className={
+              "genre-grid__item genre-grid__item--" + _.kebabCase(genre)
+            }
+            to={"/browse/genres/" + _.kebabCase(genre)}
+          >
+            <label>{genre}</label>
+          </Link>
+        );
+      }
     }
   });
 
@@ -87,26 +91,25 @@ const BrowseGrid = ({ events }) => {
       </div>
       <img className="blue-border" src={BlueBorder} />
       <div className="filter-input__wrapper">
-          <FontAwesomeIcon
-            onClick={() => {
-              if (!searchOpen) {
-                inputRef.current?.focus();
-              }
-              setSearchOpen(!searchOpen);
-            }}
-            icon="search"
-          />
-          <input
-            ref={inputRef}
-            className={"filter-input" + (searchOpen ? " is-open" : "")}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-            placeholder="Filter Genres By Name"
-          />
-        </div>
+        <FontAwesomeIcon
+          onClick={() => {
+            if (!searchOpen) {
+              inputRef.current?.focus();
+            }
+            setSearchOpen(!searchOpen);
+          }}
+          icon="search"
+        />
+        <input
+          ref={inputRef}
+          className={"filter-input" + (searchOpen ? " is-open" : "")}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          placeholder="Filter Genres By Name"
+        />
+      </div>
       <div className="browse-grid">
-        
         <div className="genre-grid__wrapper" id="genre-grid">
           <SectionTitle title="Browse by Genre:" />
           {genreMap}

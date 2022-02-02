@@ -499,11 +499,9 @@ exports.onPostBuild = async ({ graphql }) => {
       let month = date.format("MM");
       let day = date.format("DD");
       
-      console.log({date,year,month,day});
       _.set(dateArray, `${year}.${month}.${day}[${node.fields.slug}]`, node)
     })
 
-    console.log(util.inspect(dateArray,false, null, true));
 
     // If we don't already have the posts directory inside the public directory,
     // create it.

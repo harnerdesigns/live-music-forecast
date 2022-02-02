@@ -11,7 +11,6 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome/index";
 
 const Artist = ({ pageContext, data }) => {
-  console.log({ artistContext: pageContext });
   const postEdges = data.events.edges;
   const artist = data.artist;
   const artistData = data.artist.data;

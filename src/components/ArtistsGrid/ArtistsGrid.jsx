@@ -6,7 +6,6 @@ import EventCard from "../EventCard/EventCard";
 import ArtistCard from "../ArtistCard/ArtistCard";
 
 const ArtistsGrid = ({ artists }) => {
-  console.log({ artists });
 
   let artistMap = artists.map((artist) => {
     if (artist.node) {

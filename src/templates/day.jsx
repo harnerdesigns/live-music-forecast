@@ -31,7 +31,7 @@ const City = ({ pageContext, data }) => {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query CityPage($city: [String]) {
+  query DayPage($day: [String]) {
     events: allAirtable(
       limit: 1000
       sort: { fields: [data___StartDate], order: ASC }
