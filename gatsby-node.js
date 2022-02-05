@@ -346,6 +346,7 @@ exports.createPages = async ({ graphql, actions }) => {
   
 
   citySet.forEach((city) => {
+    if(city !== null && city !== "null"){
     createPage({
       path: `/browse/${_.kebabCase(city)}/`,
       component: cityPage,
@@ -354,7 +355,7 @@ exports.createPages = async ({ graphql, actions }) => {
         today: new Date(),
         dateFormat: siteConfig.dateFormat,
       },
-    });
+    });}
   });
 
 
