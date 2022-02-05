@@ -41,6 +41,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
     {
       date: today.format(siteConfig.dateFormat),
       shortDate: today.format('MM/DD'),
+      dateSlug: today.format("MM-DD"),
       shortDay: "Today",
       longDay: "Today",
     },
@@ -51,6 +52,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
   dayArray.push({
     date: tomorrow.format(siteConfig.dateFormat),
     shortDate: tomorrow.format('MM/DD'),
+    dateSlug: tomorrow.format("MM-DD"),
     shortDay: "Tomorrow",
     longDay: "Tomorrow",
 
@@ -61,6 +63,7 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
     dayArray.push({
       date: newDay.format(siteConfig.dateFormat),
       shortDate: newDay.format('MM/DD'),
+      dateSlug: newDay.format("MM-DD"),
       shortDay: newDay.format("ddd"),
       longDay: newDay.format("dddd"),
     });
@@ -98,20 +101,23 @@ export default ForecastGrid;
 
 const ForecastDay = ({day, postList}) => {
   const [dayOpen, setDayOpen] = useState(day.shortDay == "Today" || day.shortDay == "Tomorrow");
+  
 
   return(
     <div className={"forecast__day" + ` forecast__day--${day.shortDay}` + (dayOpen  ? " forecast__day--open" : "")}>
     <div className="forecast__meta" onClick={()=>{setDayOpen(!dayOpen)}}>
       <h1>{day.longDay}</h1>
-      <h2>{day.shortDate}</h2>
+      <Link to={"/"+day.dateSlug}>
+        <h2>{day.shortDate}</h2>
+        </Link>
       <FontAwesomeIcon className="forecast__caret" icon={dayOpen ? 'caret-down' : 'caret-up'} />
     </div>
     <div className="forecast__scroller">
       {
         /* Your post list here. */
         postList[day.date] ? (
-          postList[day.date].map((day) => (
-            <EventCard event={day.node} />
+          postList[day.date].map((singleday, i) => (
+            i < 4 && <EventCard event={singleday.node} /> 
           ))
         ) : (
           <h4 className="empty-day">
@@ -120,6 +126,8 @@ const ForecastDay = ({day, postList}) => {
           </h4>
         )
       }
+
+      {postList[day.date]?.length > 4 ? <Link className="button" to={`/${day.dateSlug}`}>+ {postList[day.date].length - 4} More</Link> : ""}
     </div>
   </div>
   )

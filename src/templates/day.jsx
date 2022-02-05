@@ -2,28 +2,21 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Layout from "../layout";
-import PostListing from "../components/PostListing/PostListing";
 import config from "../../data/SiteConfig";
-import ForecastGrid from "../components/ForecastGrid/ForecastGrid";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
 import BlueBorder from "../components/BlueBorder/BlueBorder";
-import VenueGrid from "../components/VenueCardGrid/VenueCardGrid";
+import EventList from "../components/EventList/EventList";
 
-const City = ({ pageContext, data }) => {
-  const { city } = pageContext;
+const Day = ({ pageContext, data }) => {
+  const { day } = pageContext;
   const postEdges = data.events.edges;
-  const venues = data.venues.edges;
   return (
     <Layout showFooterCTA={false}>
       <div className="category-container">
-        <Helmet title={`Live Music In ${city} | ${config.siteTitle}`} />
-        <PageTitle title={"Live Music In " + city + ", CO"} />
-        <ForecastGrid daysToShow={14} postEdges={postEdges} city={city} />
-        <BlueBorder />
+        <Helmet title={`${day} > Colorado Live Music | ${config.siteTitle}`} />
+        <PageTitle title={"Colorado Live Music on " + day} />
+        <EventList eventNodes={postEdges} />
 
-        <PageTitle title={"Venues In " + city} />
-
-        <VenueGrid venues={venues} />
       </div>
     </Layout>
   );
@@ -31,12 +24,12 @@ const City = ({ pageContext, data }) => {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query DayPage($day: [String]) {
+  query DayPage($day: String) {
     events: allAirtable(
       limit: 1000
       sort: { fields: [data___StartDate], order: ASC }
       filter: {
-        data: { Venue_City: { in: $city }, Status: { eq: "Published" } }
+        data: { Day: { eq: $day }, Status: { eq: "Published" } }
       }
     ) {
       totalCount
@@ -53,6 +46,7 @@ export const pageQuery = graphql`
             Description
             SoldOut
             Tags
+            Day
             Featured
             Artist_Genres
             Artists {
@@ -81,32 +75,8 @@ export const pageQuery = graphql`
         }
       }
     }
-    venues: allAirtable(
-      limit: 1000
-      sort: { fields: [data___Featured, data___EventCount], order: [ASC, DESC] }
-      filter: { table: { eq: "Venues" }, data: { City: { in: $city }, Status: {eq: "Published"}, EventCount: {gt: 0} } }
-    ) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          data {
-            Name
-            Description
-            Tags
-            Featured
-            City
-            AccentColor
-            Logo {
-              url
-            }
-          }
-        }
-      }
-    }
+    
   }
 `;
 
-export default City;
+export default Day;

@@ -79,6 +79,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const genrePage = path.resolve("src/templates/genre.jsx");
   const artistPage = path.resolve("src/templates/artist.jsx");
   const cityPage = path.resolve("src/templates/city.jsx");
+  const dayPage = path.resolve("src/templates/day.jsx");
   const venuePage = path.resolve("src/templates/venue.jsx");
 
   const markdownQueryResult = await graphql(
@@ -289,7 +290,7 @@ exports.createPages = async ({ graphql, actions }) => {
   artistLetters = artistLetters.filter((char) => /[A-Z]/.test(char));
   artistLetters.push("#");
 
-  console.log({ artistLetters });
+  // console.log({ artistLetters });
 
   const numPages = artistLetters.length;
 
@@ -413,6 +414,22 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
 
+  // Creating the "Day" Pages
+
+  for (let i = 0; i < 90; i++) {
+    const today = moment()
+    let newDate = today.add(i, 'day')
+    let daySlug = newDate.format('MM-DD')
+    createPage({
+      path: daySlug,
+      component: dayPage,
+      context: {
+        day: newDate.format('MM-DD-YYYY'),
+        today: new Date().toISOString(),
+        slug: daySlug,
+      },
+    });
+  }
 
 
 
