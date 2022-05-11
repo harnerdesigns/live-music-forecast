@@ -80,6 +80,9 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
         <React.Fragment key={i}>
           <ForecastDay day={day} postList={postList} />
           {i == 5 ? <NewsletterSignup /> : null}
+          {i == 10 && <Ad/>}
+          {i == 15 && <Ad/>}
+          {i == 20 && <Ad/>}
         </React.Fragment>
       ))}
       {showButton ? (
@@ -134,7 +137,6 @@ const ForecastDay = ({ day, postList }) => {
             return (
               <React.Fragment key={i}>
                 <EventCard event={singleday.node} />
-                {i == 2 && <Ad type={"feed"}/>}
               </React.Fragment>
             );
           })

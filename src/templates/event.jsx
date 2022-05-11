@@ -30,7 +30,6 @@ export default class PostTemplate extends React.Component {
     }
     return (
       <Layout>
-        <div>
           <SEO postPath={slug} postNode={postNode} postSEO />
           <EventHeaderWrapper>
             <EventCard
@@ -58,7 +57,6 @@ export default class PostTemplate extends React.Component {
           ></EventBody>
           {post.Artists && <><PageTitle subtitle={"Artists At The Show"} /><ArtistsGrid artists={post.Artists} /></>}
           <Ad />
-        </div>
       </Layout>
     );
   }

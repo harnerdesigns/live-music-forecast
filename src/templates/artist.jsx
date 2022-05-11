@@ -34,42 +34,110 @@ const Artist = ({ pageContext, data }) => {
         <EventList eventNodes={postEdges} />
         <BlueBorder />
         <ArtistPageGrid>
-        {artistData.SpotifyID && <div>
-            <PageTitle subtitle={"Listen To " + artistData.Name} />
+          {artistData.SpotifyID && (
+            <div>
+              <PageTitle subtitle={"Listen To " + artistData.Name} />
 
-            <iframe
-              src={
-                "https://open.spotify.com/embed/artist/" + artistData.SpotifyID
-              }
-              height="400"
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-              style={{margin: "0 auto 1rem", display: "block"}}
-            ></iframe>
-          </div>} 
-          {artistData.Name && <div>
-            <PageTitle subtitle={"Follow " + artistData.Name} />
-            <div className="artist-page__links-wrapper">
-        
-            {artistData.SpotifyURL && <a className="artist-link artist-link--spotify" target="_blank" rel="noopener noreferrer" href={artistData.SpotifyURL}><FontAwesomeIcon fixedWidth icon={['fab', 'spotify']} /> Spotify</a>}
+              <iframe
+                src={
+                  "https://open.spotify.com/embed/artist/" +
+                  artistData.SpotifyID
+                }
+                height="400"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+                style={{ margin: "0 auto 1rem", display: "block" }}
+              ></iframe>
+            </div>
+          )}
+          {artistData.Name && (
+            <div>
+              <PageTitle subtitle={"Follow " + artistData.Name} />
+              <div className="artist-page__links-wrapper">
+                {artistData.SpotifyURL && (
+                  <a
+                    className="artist-link artist-link--spotify"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={artistData.SpotifyURL}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "spotify"]} />{" "}
+                    Spotify
+                  </a>
+                )}
 
-            <a className="artist-link artist-link--amazon" target="_blank" rel="noopener noreferrer" href={`https://www.amazon.com/s?k=${artistData.Name}&amp;i=digital-music&_encoding=UTF8&tag=colivemusicforecast-20`}><FontAwesomeIcon fixedWidth icon={['fab', 'amazon']} /> Amazon</a>
+                <a
+                  className="artist-link artist-link--amazon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.amazon.com/s?k=${artistData.Name}&amp;i=digital-music&_encoding=UTF8&tag=colivemusicforecast-20`}
+                >
+                  <FontAwesomeIcon fixedWidth icon={["fab", "amazon"]} /> Amazon
+                </a>
 
-        {artistData.Twitter && <a className="artist-link artist-link--twitter" target="_blank" rel="noopener noreferrer" href={"https://twitter.com/" + artistData.Twitter}><FontAwesomeIcon fixedWidth icon={['fab', 'twitter']} /> Twitter</a>}
+                {artistData.Twitter && (
+                  <a
+                    className="artist-link artist-link--twitter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={"https://twitter.com/" + artistData.Twitter}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "twitter"]} />{" "}
+                    Twitter
+                  </a>
+                )}
 
-        {artistData.Instagram && <a className="artist-link artist-link--instagram" target="_blank" rel="noopener noreferrer" href={"https://instagram.com/" + artistData.Instagram}><FontAwesomeIcon fixedWidth icon={['fab', 'instagram']} /> Instagram</a>}
+                {artistData.Instagram && (
+                  <a
+                    className="artist-link artist-link--instagram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={"https://instagram.com/" + artistData.Instagram}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "instagram"]} />{" "}
+                    Instagram
+                  </a>
+                )}
 
-        {artistData.Facebook && <a className="artist-link artist-link--facebook" target="_blank" rel="noopener noreferrer" href={"https://facebook.com/" + artistData.Facebook}><FontAwesomeIcon fixedWidth icon={['fab', 'facebook']} /> Facebook</a>}
+                {artistData.Facebook && (
+                  <a
+                    className="artist-link artist-link--facebook"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={"https://facebook.com/" + artistData.Facebook}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "facebook"]} />{" "}
+                    Facebook
+                  </a>
+                )}
 
-        {artistData.Soundcloud && <a className="artist-link artist-link--soundcloud" target="_blank" rel="noopener noreferrer" href={"https://soundcloud.com/" + artistData.Soundcloud}><FontAwesomeIcon fixedWidth icon={['fab', 'soundcloud']} /> Soundcloud</a>}
+                {artistData.Soundcloud && (
+                  <a
+                    className="artist-link artist-link--soundcloud"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={"https://soundcloud.com/" + artistData.Soundcloud}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "soundcloud"]} />{" "}
+                    Soundcloud
+                  </a>
+                )}
 
-
-        {artistData.LastFMURL && <a className="artist-link artist-link--last-fm" target="_blank" rel="noopener noreferrer" href={artistData.LastFMURL}><FontAwesomeIcon fixedWidth icon={['fab', 'lastfm']} /> Last.fm</a>}
-        </div>
-          </div>}
-
-
+                {artistData.LastFMURL && (
+                  <a
+                    className="artist-link artist-link--last-fm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={artistData.LastFMURL}
+                  >
+                    <FontAwesomeIcon fixedWidth icon={["fab", "lastfm"]} />{" "}
+                    Last.fm
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
         </ArtistPageGrid>
         <BlueBorder />
       </div>
@@ -80,7 +148,10 @@ const Artist = ({ pageContext, data }) => {
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query ArtistPage($artist: String, $today: Date!) {
-    artist: airtable(table: {eq: "Artists"}, data: { Name: { eq: $artist } }) {
+    artist: airtable(
+      table: { eq: "Artists" }
+      data: { Name: { eq: $artist } }
+    ) {
       fields {
         slug
       }
@@ -110,7 +181,7 @@ export const pageQuery = graphql`
       limit: 1000
       sort: { fields: [data___StartDate], order: ASC }
       filter: {
-        table: {eq: "Events"}
+        table: { eq: "Events" }
         data: {
           StartDate: { gte: $today }
           Name__from_Artists_: { eq: $artist }
@@ -162,13 +233,12 @@ const ArtistPageGrid = styled.div`
   grid-gap: 2rem;
   margin: 0 auto;
 
-  @media screen and (min-width: 70rem){
-  grid-template-columns: 1fr 1fr;
+  @media screen and (min-width: 70rem) {
+    grid-template-columns: 1fr 1fr;
     width: 50%;
-
   }
 
-  iframe{
-    width: 100%!important;
+  iframe {
+    width: 100% !important;
   }
 `;
