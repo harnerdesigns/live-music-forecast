@@ -10,10 +10,10 @@ header.header {
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
     grid-gap: 1rem;
-    @include breakpoint(laptop){
-    grid-template-columns: auto 1fr;
-    border-top: 30px solid var(--blue);
-    border-bottom: 30px solid var(--blue);
+    @include breakpoint(laptop) {
+        grid-template-columns: auto 1fr;
+        border-top: 30px solid var(--blue);
+        border-bottom: 30px solid var(--blue);
     }
     .logo__wrapper {
         width: auto;
@@ -29,16 +29,16 @@ header.header {
         align-items: center;
         justify-content: flex-start;
         padding: 0.5rem 0;
+        font-size: 0;
 
         svg {
-            height: 2em;
+            height: 5rem;
             width: 60%;
             margin: -100px 0.25em;
             transition: 300ms;
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
-            @include breakpoint(laptop){
-            height: 3em;
-
+            @include breakpoint(laptop) {
+                height: 7rem;
             }
         }
         img {

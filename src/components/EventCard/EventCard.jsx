@@ -97,7 +97,7 @@ const EventCard = ({
 
       <div className="event__meta-wrapper">
         {eventData.SoldOut && (
-          <div class="event__tag event__tag--sold-out">
+          <div className="event__tag event__tag--sold-out">
             <FontAwesomeIcon fixedWidth icon="ban" />
             Sold Out
           </div>

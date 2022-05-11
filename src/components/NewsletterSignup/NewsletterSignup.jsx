@@ -20,7 +20,7 @@ const NewsletterSignup = ({ metaArray = [] }) => {
             method="post"
             id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
-            class="validate"
+            className="validate"
             target="_blank"
             novalidate
           >
@@ -28,7 +28,7 @@ const NewsletterSignup = ({ metaArray = [] }) => {
               <input
                 type="email"
                 name="EMAIL"
-                class="email"
+                className="email"
                 id="mce-EMAIL"
                 placeholder="Email Address"
                 required
@@ -40,17 +40,17 @@ const NewsletterSignup = ({ metaArray = [] }) => {
                 <input
                   type="text"
                   name="b_e27a15ea415294e0b0f2c6346_45d6419599"
-                  tabindex="-1"
+                  tabIndex="-1"
                   value=""
                 />
               </div>
-              <div class="clear">
+              <div className="clear">
                 <input
                   type="submit"
                   value="Subscribe"
                   name="subscribe"
                   id="mc-embedded-subscribe"
-                  class="button"
+                  className="button"
                 />
               </div>
             </div>

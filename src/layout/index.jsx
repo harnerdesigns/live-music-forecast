@@ -17,6 +17,8 @@ const MainLayout = ({ children, showFooterCTA }) => {
         <Helmet>
           <meta name="description" content={config.siteDescription} />
           <link rel="icon" href={favicon} />
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5546207212206045"      crossorigin="anonymous"></script>
+
         </Helmet>
         <Header/>
         {children}
