@@ -11,7 +11,7 @@ const Ad = ({ type, style }) => {
           slot="6315873557000"
           style={{ display: "block", ...style }}
           format="fluid"
-          layout-key="-ee+7u-2p-dp+ym"
+          layoutKey="-ee+7u-2p-dp+ym"
         />
       );
       break;
@@ -22,8 +22,7 @@ const Ad = ({ type, style }) => {
           slot="4922900839"
           style={{ display: "block", ...style }}
           format="auto"
-          layout-key="-ee+7u-2p-dp+ym"
-          full-width-responsive={true}
+          responsive="true"
         />
       );
       break;
@@ -31,11 +30,6 @@ const Ad = ({ type, style }) => {
   return (
     <>
       {AdCode}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
-        }}
-      ></script>
     </>
   );
 };
