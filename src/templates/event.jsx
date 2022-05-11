@@ -57,6 +57,7 @@ export default class PostTemplate extends React.Component {
           ></EventBody>
           {post.Artists && <><PageTitle subtitle={"Artists At The Show"} /><ArtistsGrid artists={post.Artists} /></>}
           <Ad />
+          
       </Layout>
     );
   }
@@ -140,7 +141,7 @@ const EventHeaderWrapper = styled.section`
     grid-template-columns: 1fr;
     margin: 3rem auto;
 
-    @media screen and (min-width: 70em){
+    @media (min-width: 70em){
     width: 50%;
     grid-template-columns: 1fr 2fr;
 

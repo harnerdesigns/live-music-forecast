@@ -6,4 +6,9 @@
     @include breakpoint(laptop) {
         grid-column: 1 / -1;
     }
+
+
+    &[data-ad-status="unfilled"]{
+        display: none!important;
+    }
 }
