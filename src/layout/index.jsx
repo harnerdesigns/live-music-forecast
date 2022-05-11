@@ -1,14 +1,13 @@
+import "./index.scss";
 import Footer from "../components/Footer/Footer";
 import React from "react";
 import Helmet from "react-helmet";
 import config from "../../data/SiteConfig";
-import "./index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Header from "../components/Header/Header";
 import "../components/fontawesome"
 import favicon from "../images/logo-1024.png"
-import "../components/Atoms/Atoms.scss"
 
 
 const MainLayout = ({ children, showFooterCTA }) => {

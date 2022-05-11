@@ -144,7 +144,6 @@ const EventHeaderWrapper = styled.section`
     @media (min-width: 70em){
     width: 50%;
     grid-template-columns: 1fr 2fr;
-
     }
 
     .event__name {

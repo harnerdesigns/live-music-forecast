@@ -81,7 +81,7 @@ export const pageQuery = graphql`
       sort: { fields: [data___Name], order: ASC }
       filter: {
         table: { eq: "Artists" }
-        data: { Name: { regex: $currentLetterFilter } }
+        data: { Name: { regex: $currentLetterFilter }, EventCount: {gt: 0} }
       }
     ) {
       edges {

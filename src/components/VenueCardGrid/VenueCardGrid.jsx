@@ -4,7 +4,7 @@ import "./VenueCardGrid.scss";
 
 import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import VenueCard from "../VenueCard/VenueCard";
+import VenueCard from "../VenueCard/VenueCard.jsx";
 
 const VenueGrid = ({ venues }) => {
   const inputRef = useRef( null);

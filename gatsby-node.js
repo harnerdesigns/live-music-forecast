@@ -233,7 +233,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const artistsQuery = await graphql(
     `
       query {
-        allAirtable(limit: ${graphqlPostLimit}, filter: { table: { eq: "Artists" }, data: {EventCount: {gt: 0}} }) {
+        allAirtable(limit: ${graphqlPostLimit}, filter: { table: { eq: "Artists" } }) {
           edges {
             node {
               fields {
