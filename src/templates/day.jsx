@@ -47,9 +47,9 @@ const Day = ({ pageContext, data }) => {
   return (
     <Layout showFooterCTA={false}>
       <div className="category-container">
-        <Helmet title={`Live Music ${todayPage ? "Today " + dateObject.format('MMM Do YYYY') : "On " + dateObject.format('MMM Do YYYY')} > Colorado Live Music | ${config.siteTitle}`} />
-        <PageTitle title={"Colorado Live Music" } subtitle={dateObject.format('ddd, MMM Do YYYY')} />
-        <section className={"grid grid--2 grid--mobile-1"} style={{gridTemplateColumns: "repeat(auto-fit, minmax(40%, 1fr)"}}>
+        <Helmet title={`Live Music ${todayPage ? "Today, " + dateObject.format('MMM Do YYYY') : "On " + dateObject.format('MMM Do YYYY')} > Colorado Live Music | ${config.siteTitle}`} />
+        <PageTitle title={"Colorado Live Music" } subtitle={(todayPage ? "Today, " : "") + dateObject.format('ddd, MMM Do YYYY')} />
+        <section className={"grid grid--2 grid--mobile-1"}>
           {cityMap}
         </section>
       </div>

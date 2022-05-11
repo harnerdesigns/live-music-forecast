@@ -12,7 +12,7 @@ const EventList = ({ eventNodes }) => {
         return (
           <React.Fragment key={i}>
             <EventCard event={eventNode.node} showDate featured={i == 0} />
-            {i == 0 && eventNodes.length > 1 && <Ad style={{gridColumn: '1 / span 2'}} />}
+            {i == 0 && eventNodes.length > 1 && <Ad />}
           </React.Fragment>
         );
       })

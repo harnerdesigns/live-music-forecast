@@ -445,7 +445,9 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   for (let i = 0; i < 90; i++) {
-    let newDate = today.add(i, 'day')
+    const pagesToday = moment()
+
+    let newDate = pagesToday.add(i, 'day')
     let daySlug = newDate.format('MM-DD')
     createPage({
       path: daySlug,

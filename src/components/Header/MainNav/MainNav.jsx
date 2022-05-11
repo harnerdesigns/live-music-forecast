@@ -12,7 +12,7 @@ const MainNav = () => {
             <Link to="/browse" className="nav__item">Browse</Link>
             <Link to="/venues" className="nav__item">Venues</Link>
             <Link to="/artists" className="nav__item">Artists</Link>
-            <Link to="/submit" className="nav__item button">Submit An Event</Link>
+            <Link to="/today" className="nav__item button">Any Concerts Today?</Link>
         </nav>
         <div className={"mobile-nav__bg" + (isOpen ? " mobile-nav__bg--open" : "")} onClick={()=>setIsOpen(false)}></div>
         <FontAwesomeIcon onClick={()=>setIsOpen(!isOpen)} id="mobile-nav__toggle" className={isOpen ? "mobile-nav__toggle--open" : "mobile-nav__toggle"} icon={isOpen ? "times" : "bars"} />

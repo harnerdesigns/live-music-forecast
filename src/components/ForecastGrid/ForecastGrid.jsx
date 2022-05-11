@@ -146,7 +146,7 @@ const ForecastDay = ({ day, postList }) => {
         )}
 
         {postList[day.date]?.length > 4 ? (
-          <Link className="button" to={`/${day.dateSlug}`}>
+          <Link className="see-more-link" to={`/${day.dateSlug}`}>
             + {postList[day.date].length - 4} More
           </Link>
         ) : (

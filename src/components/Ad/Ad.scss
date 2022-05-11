@@ -1,3 +1,9 @@
+@import "../../scss/mixins";
+
 .adsbygoogle{
     width: 100%;
+
+    @include breakpoint(laptop) {
+        grid-column: auto / span 2;
+    }
 }
