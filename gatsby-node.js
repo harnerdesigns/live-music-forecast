@@ -417,8 +417,34 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Creating the "Day" Pages
 
+  const today = moment()
+
+  let todayPageSlug = today.format('MM-DD')
+
+  createPage({
+    path: "today",
+    component: dayPage,
+    context: {
+      day: today.format('MM-DD-YYYY'),
+      today: new Date().toISOString(),
+      slug: todayPageSlug,
+      todayPage: true
+    },
+  });
+  let tomorrow = today.add(1, "day");
+  let tomorrowPageSlug = tomorrow.format('MM-DD')
+
+  createPage({
+    path: "tomorrow",
+    component: dayPage,
+    context: {
+      day: tomorrow.format('MM-DD-YYYY'),
+      today: new Date().toISOString(),
+      slug: tomorrowPageSlug,
+    },
+  });
+
   for (let i = 0; i < 90; i++) {
-    const today = moment()
     let newDate = today.add(i, 'day')
     let daySlug = newDate.format('MM-DD')
     createPage({

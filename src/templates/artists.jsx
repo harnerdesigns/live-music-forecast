@@ -17,6 +17,7 @@ const ArtistsPage = ({ data, pageContext }) => {
     return (
       
         <a
+        key={letter}
           className={
             "letter" +
             (letter === pageContext.currentLetter || (letter == "#" && "Other" == pageContext.currentLetter) ? " letter--active" : "")

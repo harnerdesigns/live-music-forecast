@@ -11,12 +11,12 @@ const VenueGrid = ({ venues }) => {
 
   let [search, setSearch] = useState();
   let [searchOpen, setSearchOpen] = useState(false);
-  let venueMap = venues.map(({node}) => {
+  let venueMap = venues.map(({node}, i) => {
     if (
       search == null ||
       node.data.Name.toLowerCase().includes(search.toLowerCase()) || node.data.Tags?.includes(search.toLowerCase())
     ) {
-      return <VenueCard node={node} />;
+      return <VenueCard key={i} node={node} />;
     }
   });
   return (<>

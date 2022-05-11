@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../components/Header/Header";
 import "../components/fontawesome"
 import favicon from "../images/logo-1024.png"
+import "../components/Atoms/Atoms.scss"
 
 
 const MainLayout = ({ children, showFooterCTA }) => {

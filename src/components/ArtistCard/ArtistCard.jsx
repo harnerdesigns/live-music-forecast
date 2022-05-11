@@ -27,11 +27,11 @@ const ArtistCard = ({ artist, large = false }) => {
           artist.data.GenresRec &&
           artist.data.GenresRec.map((genre, i) => {
             return (
-              <><Link to={"/browse/genres/" + _.kebabCase(genre.data.Name)}>
+              <React.Fragment key={i}><Link to={"/browse/genres/" + _.kebabCase(genre.data.Name)}>
                 {genre.data.Name}
               </Link>
               {i < artist.data.GenresRec.length - 1 ? ", " : ""}
-              </>
+              </React.Fragment>
             );
           })}
       </div>

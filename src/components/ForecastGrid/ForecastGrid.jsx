@@ -77,10 +77,10 @@ const ForecastGrid = ({ showButton, postEdges, daysToShow, city }) => {
         </span>
       </div>
       {dayArray.map((day, i) => (
-        <>
+        <React.Fragment key={i}>
           <ForecastDay day={day} postList={postList} />
           {i == 5 ? <NewsletterSignup /> : null}
-        </>
+        </React.Fragment>
       ))}
       {showButton ? (
         <Link to="/calendar" className="calendar-link">
@@ -103,6 +103,7 @@ const ForecastDay = ({ day, postList }) => {
 
   return (
     <div
+    key={day.shortDay}
       className={
         "forecast__day" +
         ` forecast__day--${day.shortDay}` +
@@ -131,10 +132,10 @@ const ForecastDay = ({ day, postList }) => {
               return;
             }
             return (
-              <>
+              <React.Fragment key={i}>
                 <EventCard event={singleday.node} />
                 {i == 2 && <Ad type={"feed"}/>}
-              </>
+              </React.Fragment>
             );
           })
         ) : (

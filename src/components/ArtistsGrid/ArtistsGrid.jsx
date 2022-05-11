@@ -7,11 +7,11 @@ import ArtistCard from "../ArtistCard/ArtistCard";
 
 const ArtistsGrid = ({ artists }) => {
 
-  let artistMap = artists.map((artist) => {
+  let artistMap = artists.map((artist, i) => {
     if (artist.node) {
       artist = artist.node;
     }
-    return <ArtistCard artist={artist} />;
+    return <ArtistCard key={i} artist={artist} />;
   });
 
   return (

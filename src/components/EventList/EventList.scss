@@ -11,7 +11,7 @@
     justify-content: center;
 
     @include breakpoint(laptop){
-        max-width: 50%;
+        max-width: 800px;
         grid-gap: 2rem;
         margin: 2rem auto;
 

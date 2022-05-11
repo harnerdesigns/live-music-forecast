@@ -10,10 +10,10 @@ const EventList = ({ eventNodes }) => {
     eventNodes.length >= 1 ? (
       eventNodes.map((eventNode, i) => {
         return (
-          <>
+          <React.Fragment key={i}>
             <EventCard event={eventNode.node} showDate featured={i == 0} />
             {i == 0 && eventNodes.length > 1 && <Ad style={{gridColumn: '1 / span 2'}} />}
-          </>
+          </React.Fragment>
         );
       })
     ) : (
