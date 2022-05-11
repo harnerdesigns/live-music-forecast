@@ -217,12 +217,12 @@
 
         .event__venue-name {
             text-align: center;
-            font-size: 1.5em;
             margin: 0.5rem auto;
+            font-weight: 900;
         }
 
         .event__time-wrapper {
-            font-size: 1em;
+            font-size: 1.5em;
             text-align: center;
         }
         .event__description {
@@ -246,11 +246,6 @@
     }
 
     .event__subtitle {
-        display: block;
-
-    }
-
-    .event__venue-name {
         display: block;
 
     }

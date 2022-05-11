@@ -30,6 +30,7 @@ const ArtistsSearchPage = ({ data, pageContext }) => {
   let letterLinkList = pageContext.letters.map((letter) => {
     return (
       <Link
+      key={letter}
         className={
           "letter" +
           (letter === pageContext.currentLetter ? " letter--active" : "")

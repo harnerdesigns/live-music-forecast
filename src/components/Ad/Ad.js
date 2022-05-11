@@ -25,7 +25,7 @@ const Ad = ({ type, style }) => {
   return (
     <>
         {AdCode}
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script dangerouslySetInnerHTML={{__html:`(adsbygoogle = window.adsbygoogle || []).push({});`}}></script>
     </>
   );
 };

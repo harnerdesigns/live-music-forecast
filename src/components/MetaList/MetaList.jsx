@@ -5,10 +5,10 @@ import _ from "lodash";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
 
 const MetaList = ({ metaArray = [] }) => {
-  let metaMap = metaArray.map((metaItem) => {
+  let metaMap = metaArray.map((metaItem, i) => {
     if (!metaItem) return false;
     return (
-      <li className="meta-list__item">
+      <li key={i} className="meta-list__item">
         {metaItem["link"] ? (
           <a href={metaItem["link"]} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={metaItem["icon"]} />

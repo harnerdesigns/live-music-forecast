@@ -22,7 +22,7 @@ const NewsletterSignup = ({ metaArray = [] }) => {
             name="mc-embedded-subscribe-form"
             className="validate"
             target="_blank"
-            novalidate
+            noValidate
           >
             <div id="mc_embed_signup_scroll">
               <input
@@ -42,6 +42,7 @@ const NewsletterSignup = ({ metaArray = [] }) => {
                   name="b_e27a15ea415294e0b0f2c6346_45d6419599"
                   tabIndex="-1"
                   value=""
+                  onChange={()=>{}}
                 />
               </div>
               <div className="clear">

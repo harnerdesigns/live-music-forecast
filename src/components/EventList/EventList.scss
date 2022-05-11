@@ -1,37 +1,37 @@
 @import "../../scss/mixins";
 .event__list {
-
     max-width: 95%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     margin: 1rem auto;
 
     align-items: stretch;
     justify-content: center;
 
-    @include breakpoint(laptop){
-        max-width: 50%;
+    @include breakpoint(laptop) {
+        grid-template-columns: 1fr 1fr;
+
+        max-width: 800px;
         grid-gap: 2rem;
         margin: 2rem auto;
-
-
     }
 
-    .event__card{
-
-
-        &--featured{
-            grid-row: auto / span 2;
+    .event__card {
+        &--featured {
+            @include breakpoint(laptop) {
+                grid-row: auto / span 2;
+            }
         }
-        &:first-child{
-            grid-column: auto / span 2;
-            max-width: 80%;
+        &:first-child {
+            @include breakpoint(laptop) {
+                grid-column: auto / span 2;
+                max-width: 80%;
+            }
             margin: 0 auto;
         }
     }
 
-    .no-upcoming-shows{
+    .no-upcoming-shows {
         text-align: center;
         grid-column: 1 / -1;
         text-align: center;

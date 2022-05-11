@@ -47,7 +47,7 @@ const VenueCard = ({ node }) => {
         {venue.Tags &&
           venue.Tags.map((tag) => {
             return (
-              <div className={"venue__tag venue__tag--" + _.camelCase(tag)}>
+              <div key={_.camelCase(tag)} className={"venue__tag venue__tag--" + _.camelCase(tag)}>
                 <FontAwesomeIcon fixedWidth icon={genreIcons[tag] || "tag"} />
 
                 {tag}

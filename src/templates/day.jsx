@@ -10,7 +10,7 @@ import EventList from "../components/EventList/EventList";
 import Ad from "../components/Ad/Ad";
 
 const Day = ({ pageContext, data }) => {
-  const { day } = pageContext;
+  const { day, todayPage } = pageContext;
 
   const dateObject = moment(day, 'MM-DD-YYYY');
   console.log({day, dateObject})
@@ -35,21 +35,23 @@ const Day = ({ pageContext, data }) => {
   );
 
   let keys = grouped.keys();
-  let cityMap = Array.from(keys).map((key) => {
+  let cityMap = Array.from(keys).map((key, i) => {
     return (
-      <>
+     key && <div key={i}>
         <PageTitle subtitle={key || "Other"} />
         <EventList eventNodes={grouped.get(key)} />
         <Ad />
-      </>
+      </div>
     );
   });
   return (
     <Layout showFooterCTA={false}>
       <div className="category-container">
-        <Helmet title={`Live Music On ${dateObject.format('MMM Do YYYY')} > Colorado Live Music | ${config.siteTitle}`} />
-        <PageTitle title={"Colorado Live Music on " + dateObject.format('ddd, MMM Do YYYY')} />
-        {cityMap}
+        <Helmet title={`Live Music ${todayPage ? "Today, " + dateObject.format('MMM Do YYYY') : "On " + dateObject.format('MMM Do YYYY')} > Colorado Live Music | ${config.siteTitle}`} />
+        <PageTitle title={"Colorado Live Music" } subtitle={(todayPage ? "Today, " : "") + dateObject.format('ddd, MMM Do YYYY')} />
+        <section className={"grid grid--2 grid--mobile-1"}>
+          {cityMap}
+        </section>
       </div>
     </Layout>
   );

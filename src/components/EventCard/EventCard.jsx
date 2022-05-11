@@ -55,8 +55,8 @@ const EventCard = ({
       )}
       {showImage && eventData.Image && eventData.Featured && (
         <Slider {...settings}>
-          {eventData.Image.map((Image) => (
-            <div className="event__image-wrapper">
+          {eventData.Image.map((Image, i) => (
+            <div key={i} className="event__image-wrapper">
               <img className="event__image" src={Image.url} />
             </div>
           ))}
@@ -81,18 +81,24 @@ const EventCard = ({
           <h3 className="event__subtitle">{eventData.Subtitle}</h3>
         )}
 
-          <h4 className="event__time-wrapper">
-            {moment(eventData.StartDate).format(
-              showDate ? "MM/DD/YYYY @ h:mm A" : "h:mm A"
-            )}{" "}
-            {eventData.DoorsTime &&
-              "| Doors @ " + moment(eventData.DoorsTime).format("h:mm A")}
+        <h4 className="event__time-wrapper">
+          {moment(eventData.StartDate).format(
+            showDate ? "MM/DD/YYYY @ h:mm A" : "h:mm A"
+          )}{" "}
+          {eventData.DoorsTime &&
+            "| Doors @ " + moment(eventData.DoorsTime).format("h:mm A")}
           {eventData.Venues && (
-            <Link className="event__venue-name" to={eventData.Venues[0].fields.slug}>
-                 {(showDate ? '-' : '@')} {eventData.Venues[0].data.Name}
-            </Link>
+            <>
+              {showDate ? " - " : " @ "}
+              <Link
+                className="event__venue-name"
+                to={eventData.Venues[0].fields.slug}
+              >
+                {eventData.Venues[0].data.Name}
+              </Link>
+            </>
           )}
-          </h4>
+        </h4>
       </div>
 
       <div className="event__meta-wrapper">
@@ -115,7 +121,7 @@ const EventCard = ({
         {eventData.Tags &&
           eventData.Tags.map((tag) => {
             return (
-              <div className={"event__tag event__tag--" + _.camelCase(tag)}>
+              <div key={_.camelCase(tag)} className={"event__tag event__tag--" + _.camelCase(tag)}>
                 <FontAwesomeIcon fixedWidth icon={genreIcons[tag] || "tag"} />
 
                 {tag}
@@ -128,6 +134,7 @@ const EventCard = ({
             if (index > 2) {
               return (
                 <Link
+                key={_.camelCase(genre)}
                   to={`/browse/genres/${genre}`}
                   className={"event__tag event__tag--" + _.camelCase(genre)}
                 >
@@ -147,6 +154,7 @@ const EventCard = ({
                 <Link
                   to={`/browse/genres/${_.kebabCase(genre)}`}
                   className={"event__tag event__tag--" + _.camelCase(genre)}
+                  key={_.camelCase(genre)}
                 >
                   <FontAwesomeIcon
                     fixedWidth

@@ -35,6 +35,7 @@ const BrowseGrid = ({ events }) => {
     if (city != null && city != "null") {
       return (
         <Link
+        key={_.kebabCase(city)}
           className={"city-grid__item city-grid__item--" + _.kebabCase(city)}
           to={"/browse/" + _.kebabCase(city)}
         >
@@ -67,6 +68,7 @@ const BrowseGrid = ({ events }) => {
       if (genre != "null" && genre != null) {
         return (
           <Link
+          key={_.kebabCase(genre)}
             className={
               "genre-grid__item genre-grid__item--" + _.kebabCase(genre)
             }
