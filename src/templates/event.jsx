@@ -13,6 +13,7 @@ import styled from "styled-components";
 import EventCard from "../components/EventCard/EventCard";
 import ArtistsGrid from "../components/ArtistsGrid/ArtistsGrid";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
+import Ad from "../components/Ad/Ad";
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -53,9 +54,10 @@ export default class PostTemplate extends React.Component {
             </div>
           </EventHeaderWrapper>
           <EventBody
-            dangerouslySetInnerHTML={{ __html: post.Description || (post.Artists ? post.Artists[0].data.Bio : null) }}
+            dangerouslySetInnerHTML={{ __html: post.Description || (post.Artists ? post.Artists[0].data.Bio : `<p>No Event Description Available</p>`) }}
           ></EventBody>
           {post.Artists && <><PageTitle subtitle={"Artists At The Show"} /><ArtistsGrid artists={post.Artists} /></>}
+          <Ad />
         </div>
       </Layout>
     );

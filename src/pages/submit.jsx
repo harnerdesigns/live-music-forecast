@@ -12,7 +12,7 @@ class SubmitPage extends Component {
         <div className="submit-container">
           <Helmet title={`Submit An Event | ${config.siteTitle}`} />
           <PageTitle title="Submit An Event"/>
-          <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe class="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrABQ6tAlyzcBwLy" frameborder="0" onmousewheel="" width="100%" height="2162" style={{background: "#fff"}}></iframe>
+          <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe className="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrABQ6tAlyzcBwLy" frameborder="0" onmousewheel="" width="100%" height="2162" style={{background: "#fff"}}></iframe>
         </div>
       </Layout>
     );

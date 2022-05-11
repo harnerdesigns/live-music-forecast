@@ -39,7 +39,7 @@ const VenueCard = ({ node }) => {
       <div className="venue__card-heading">
         <h2 className="venue__name">{venue.Name}</h2>
         <div className="venue__meta-wrapper">
-        <div class="venue__tag venue__city">
+        <div className="venue__tag venue__city">
           <FontAwesomeIcon fixedWidth icon="map-marker-alt" />
           {venue.City}
         </div>

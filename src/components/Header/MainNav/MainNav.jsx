@@ -8,7 +8,7 @@ const MainNav = () => {
     const [isOpen, setIsOpen] = useState(false); 
 
     return(<>
-        <nav id="mainNav" class={"nav__wrapper" + (isOpen ? " nav__wrapper--open" : "")}> 
+        <nav id="mainNav" className={"nav__wrapper" + (isOpen ? " nav__wrapper--open" : "")}> 
             <Link to="/browse" className="nav__item">Browse</Link>
             <Link to="/venues" className="nav__item">Venues</Link>
             <Link to="/artists" className="nav__item">Artists</Link>
