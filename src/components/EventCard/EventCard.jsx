@@ -176,6 +176,7 @@ const EventCard = ({
             rel="noreferrer noopener"
             className="button event__ticket-button"
           >
+            <FontAwesomeIcon icon="ticket-alt" />
             Buy Tickets{" "}
             {eventData.Price &&
               `(${
@@ -183,7 +184,6 @@ const EventCard = ({
                   ? formatter.format(parseFloat(eventData.Price))
                   : eventData.Price
               }${eventData.PriceRange ? "+" : ""})`}
-            <FontAwesomeIcon icon="external-link-alt" />
           </a>
         )}
     </div>

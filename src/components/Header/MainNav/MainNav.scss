@@ -38,6 +38,7 @@
         transition: 300ms;
         background: none;
         border: none;
+        font-size: 1.25rem;
 
         @include breakpoint(tabletDown) {
             width: 100%;
@@ -72,7 +73,6 @@
             color: var(--black);
             padding: 1rem 2rem;
             margin: 0;
-            font-size: 1.5em;
 
             &[aria-current] {
                 border-bottom: none;

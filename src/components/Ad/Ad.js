@@ -29,7 +29,7 @@ const Ad = ({ type, style }) => {
   }
   return (
     <>
-      {AdCode}
+      {/* {AdCode} */}
     </>
   );
 };

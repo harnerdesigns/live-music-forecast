@@ -14,6 +14,7 @@ import EventCard from "../components/EventCard/EventCard";
 import ArtistsGrid from "../components/ArtistsGrid/ArtistsGrid";
 import PageTitle from "../components/Pages/PageTitle/PageTitle";
 import Ad from "../components/Ad/Ad";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -30,34 +31,49 @@ export default class PostTemplate extends React.Component {
     }
     return (
       <Layout>
-          <SEO postPath={slug} postNode={postNode} postSEO />
-          <EventHeaderWrapper>
-            <EventCard
-              featured={false}
-              event={postNode}
-              showDate
-              showTicket
-              showLink={false}
-            />
-            <div
-              className="event__bg-image"
-              style={{
-                backgroundImage: "url(" + imageUrl + ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                position: "absolute",
-              }}
-            ></div>
-            <div className="post-meta">
-              <PostTags tags={post.tags} />
-            </div>
-          </EventHeaderWrapper>
-          <EventBody
-            dangerouslySetInnerHTML={{ __html: post.Description || (post.Artists ? post.Artists[0].data.Bio : `<p>No Event Description Available</p>`) }}
-          ></EventBody>
-          {post.Artists && <><PageTitle subtitle={"Artists At The Show"} /><ArtistsGrid artists={post.Artists} /></>}
-          <Ad />
-          
+        <SEO postPath={slug} postNode={postNode} postSEO />
+        <EventHeaderWrapper>
+          <EventCard
+            featured={false}
+            event={postNode}
+            showDate
+            showTicket
+            showLink={false}
+          />
+          <div
+            className="event__bg-image"
+            style={{
+              backgroundImage: "url(" + imageUrl + ")",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              position: "absolute",
+            }}
+          ></div>
+          <div className="post-meta">
+            <PostTags tags={post.tags} />
+          </div>
+        </EventHeaderWrapper>
+        <EventBody
+          dangerouslySetInnerHTML={{
+            __html:
+              post.Description ||
+              (post.Artists
+                ? post.Artists[0].data.Bio
+                : `<p>No Event Description Available</p>`),
+          }}
+        ></EventBody>
+        {post.Artists && (
+          <>
+            <PageTitle subtitle={"Artists At The Show"} />
+            <ArtistsGrid artists={post.Artists} />
+          </>
+        )}
+        <Ad />
+        <EventLinks>
+          <a href={post.TicketURL} target="_blank" rel="noopener noreferrer" className="button button--large">
+            <FontAwesomeIcon icon="ticket-alt" /> Buy Tickets
+          </a>
+        </EventLinks>
       </Layout>
     );
   }
@@ -86,20 +102,20 @@ export const pageQuery = graphql`
         }
         Tags
         Artist_Genres
-        Artists{
-          fields{
+        Artists {
+          fields {
             slug
           }
-          data{
+          data {
             Name
             Bio
-            Image{
+            Image {
               url
             }
           }
         }
         Venues {
-          fields{
+          fields {
             slug
           }
           data {
@@ -141,9 +157,9 @@ const EventHeaderWrapper = styled.section`
     grid-template-columns: 1fr;
     margin: 3rem auto;
 
-    @media (min-width: 70em){
-    width: 50%;
-    grid-template-columns: 1fr 2fr;
+    @media (min-width: 70em) {
+      width: 50%;
+      grid-template-columns: 1fr 2fr;
     }
 
     .event__name {
@@ -171,7 +187,6 @@ const EventHeaderWrapper = styled.section`
     .event__time-wrapper {
       text-align: center;
       font-size: 1.25rem;
-
     }
     .event__meta-wrapper {
       display: flex;
@@ -194,14 +209,23 @@ const EventBody = styled.div`
   padding: 2rem;
   margin: 1rem auto;
 
-  @media screen and (min-width: 70em){
-
+  @media screen and (min-width: 70em) {
     width: 50%;
     margin: 2rem auto;
-
   }
 
-  a{
+  a {
     display: none;
+  }
+`;
+
+const EventLinks = styled.div`
+  width: 100%;
+  padding: 2rem;
+  margin: 1rem auto;
+
+  @media screen and (min-width: 70em) {
+    width: 50%;
+    margin: 2rem auto;
   }
 `;

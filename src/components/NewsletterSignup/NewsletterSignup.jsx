@@ -5,9 +5,9 @@ import coloradoEnvelope from "../../images/co-envelope.svg"
 import _ from "lodash";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";
 
-const NewsletterSignup = ({ metaArray = [] }) => {
+const NewsletterSignup = ({ metaArray = [], large = false }) => {
   return (
-    <div className="newsletter-signup__wrapper">
+    <div className={"newsletter-signup__wrapper" + (large ? " large" : "")}>
       <img src={coloradoEnvelope} />
       <div className="newsletter-signup__text-wrapper">
         <h1 className="newsletter-signup__heading">
