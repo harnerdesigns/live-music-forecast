@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
-import defaultOG from "../../images/Default-OG-Image.png"
+import defaultOG from "../../images/Default-OG-Image.png";
 
 class SEO extends Component {
-
-  componentDidMount(){
+  componentDidMount() {
     const { postNode, postPath, postSEO } = this.props;
   }
   render() {
@@ -18,15 +17,28 @@ class SEO extends Component {
     let postURL;
     let author;
     let postMeta;
-    let ogImage
+    let ogImage;
 
     if (postSEO) {
       postMeta = postNode.data;
       ({ Name } = postMeta);
-      title = Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "") + ` | ${config.siteTitle}`;
+      title =
+        Name +
+        (postMeta?.Venues[0] ? " @ " + postMeta.Venues[0].data.Name : "") +
+        (postMeta?.Venues[0]
+          ? ", " + postMeta.Venues[0].data.City + ", CO"
+          : "") +
+        ` | ${config.siteTitle}`;
       image = postMeta.Image ? postMeta.Image[0].url : defaultOG;
+      ogImage = image ? image : defaultOG;
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
-      description = "Check out and get tickets to " + Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "")
+      description =
+        "Check out and get tickets to " +
+        Name +
+        (postMeta?.Venues[0] ? " @ " + postMeta.Venues[0].data.Name : "") +
+        (postMeta?.Venues[0]
+          ? ", " + postMeta.Venues[0].data.City + ", CO"
+          : "");
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
@@ -34,7 +46,8 @@ class SEO extends Component {
       image = config.siteLogo;
     }
 
-    if(image && image.indexOf("http") == -1) image = urljoin(config.siteUrl, config.pathPrefix, image);
+    if (image && image.indexOf("http") == -1)
+      image = urljoin(config.siteUrl, config.pathPrefix, image);
     const blogURL = urljoin(config.siteUrl, config.pathPrefix);
     const schemaOrgJSONLD = [
       {
@@ -42,8 +55,8 @@ class SEO extends Component {
         "@type": "WebSite",
         url: blogURL,
         name: title,
-        alternateName: config.siteTitleAlt ? config.siteTitleAlt : ""
-      }
+        alternateName: config.siteTitleAlt ? config.siteTitleAlt : "",
+      },
     ];
     if (postSEO) {
       schemaOrgJSONLD.push(
@@ -57,10 +70,10 @@ class SEO extends Component {
               item: {
                 "@id": postURL,
                 name: title,
-                image
-              }
-            }
-          ]
+                image,
+              },
+            },
+          ],
         },
         {
           "@context": "http://schema.org",
@@ -71,16 +84,23 @@ class SEO extends Component {
           headline: title,
           image: {
             "@type": "ImageObject",
-            url: image
+            url: image,
           },
-          description
+          description,
         }
       );
     }
     return (
       <Helmet>
         {/* General tags */}
-        <title>{Name + (postMeta?.Venues[0] ? " @ "+postMeta.Venues[0].data.Name : "")  + (postMeta?.Venues[0] ? ", "+postMeta.Venues[0].data.City + ", CO" : "") + ` | ${config.siteTitle}`}</title>
+        <title>
+          {Name +
+            (postMeta?.Venues[0] ? " @ " + postMeta.Venues[0].data.Name : "") +
+            (postMeta?.Venues[0]
+              ? ", " + postMeta.Venues[0].data.City + ", CO"
+              : "") +
+            ` | ${config.siteTitle}`}
+        </title>
         <meta name="description" content={description} />
         <meta name="image" content={image} />
 
@@ -94,7 +114,7 @@ class SEO extends Component {
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image ? image : ogImage} />
+        <meta property="og:image" content={ogImage} />
         <meta
           property="fb:app_id"
           content={config.siteFBAppID ? config.siteFBAppID : ""}
@@ -108,7 +128,7 @@ class SEO extends Component {
         />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image ? image : ogImage} />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
     );
   }
