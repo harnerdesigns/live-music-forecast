@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./NewsletterSignup.scss";
 import coloradoEnvelope from "../../images/co-envelope.svg"
 import _ from "lodash";
 import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/react-fontawesome/index";

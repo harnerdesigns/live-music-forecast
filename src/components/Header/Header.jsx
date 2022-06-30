@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
-import "./Header.scss";
 import MainNav from "./MainNav/MainNav";
 import logo from "../../images/Live-Music-Forecast.svg"
 

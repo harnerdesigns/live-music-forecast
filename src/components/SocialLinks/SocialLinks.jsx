@@ -16,7 +16,6 @@ import {
 } from "react-share";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
-import "./SocialLinks.css";
 
 class SocialLinks extends Component {
   render() {

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./EventCard.scss";
 import moment from "moment";
 import Slider from "react-slick";
 import _ from "lodash";

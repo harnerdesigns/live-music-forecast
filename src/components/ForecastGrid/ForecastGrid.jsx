@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
-import "./ForecastGrid.scss";
 import moment from "moment-timezone";
 import siteConfig from "../../../data/SiteConfig";
 import EventCard from "../EventCard/EventCard";

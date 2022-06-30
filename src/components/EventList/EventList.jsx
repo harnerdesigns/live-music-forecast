@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./EventList.scss";
 import _ from "lodash";
 import EventCard from "../EventCard/EventCard";
 import Ad from "../Ad/Ad";

@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Link } from "gatsby";
-import "./VenueCardGrid.scss";
 
 import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

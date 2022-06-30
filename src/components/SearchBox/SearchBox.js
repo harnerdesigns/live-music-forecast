@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome/index';
 
-import "./SearchBox.scss";
 
 const SearchBox = ({search, setSearch, onSubmit}) => {
 

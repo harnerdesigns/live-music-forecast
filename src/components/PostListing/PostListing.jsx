@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./PostListing.css";
 import moment from 'moment';
 import siteConfig from "../../../data/SiteConfig";
 

@@ -1,5 +1,4 @@
 import React, { Component, useRef, useState } from "react";
-import "./Browse.scss";
 import BlueBorder from "../../../images/blue-border.svg";
 import { Link } from "gatsby";
 import PageTitle from "../PageTitle/PageTitle";

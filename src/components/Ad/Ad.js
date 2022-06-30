@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AdSense from "react-adsense";
-import "./Ad.scss";
 const Ad = ({ type, style }) => {
   let AdCode;
   switch (type) {

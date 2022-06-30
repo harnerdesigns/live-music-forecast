@@ -60,7 +60,7 @@
         &:before {
             content: "";
             position: absolute;
-            background-image: url("../../../images/gray-co.svg");
+            background-image: url("../images/gray-co.svg");
             top: 0;
             left: 0;
             right: 0;
@@ -103,28 +103,28 @@
             &:before {
                 background-size: cover;
 
-                background-image: url("../../../images/cities/denver.webp");
+                background-image: url("../images/cities/denver.webp");
             }
         }
         &--boulder {
             &:before {
                 background-size: cover;
 
-                background-image: url("../../../images/cities/boulder.webp");
+                background-image: url("../images/cities/boulder.webp");
             }
         }
         &--colorado-springs {
             &:before {
                 background-size: cover;
 
-                background-image: url("../../../images/cities/colorado-springs.webp");
+                background-image: url("../images/cities/colorado-springs.webp");
             }
         }
         &--fort-collins {
             &:before {
                 background-size: cover;
 
-                background-image: url("../../../images/cities/fort-collins.webp");
+                background-image: url("../images/cities/fort-collins.webp");
             }
         }
     }
@@ -167,7 +167,7 @@
 
         &:before {
             content: "";
-            background-image: url("../../../images/gray-co.svg");
+            background-image: url("../images/gray-co.svg");
             background-size: cover;
             background-position: center center;
             padding-bottom: 100%;

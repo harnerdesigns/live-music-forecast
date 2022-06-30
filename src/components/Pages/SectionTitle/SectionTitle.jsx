@@ -1,5 +1,4 @@
 import React from "react";
-import "./SectionTitle.scss";
 import BlueBorder from "../../../images/blue-border.svg";
 import { Link } from "gatsby";
 

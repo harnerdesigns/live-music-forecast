@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./VenueCard.scss";
 import moment from "moment";
 import siteConfig from "../../../data/SiteConfig";
 import Slider from "react-slick";

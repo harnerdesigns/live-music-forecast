@@ -6,10 +6,10 @@ import defaultOG from "../../images/Default-OG-Image.png";
 
 class SEO extends Component {
   componentDidMount() {
-    const { postNode, postPath, postSEO } = this.props;
+    const { postNode, postPath, postSEO, customSEO } = this.props;
   }
   render() {
-    const { postNode, postPath, postSEO } = this.props;
+    const { postNode, postPath, postSEO, customSEO } = this.props;
     let title;
     let Name;
     let description;
@@ -39,6 +39,16 @@ class SEO extends Component {
         (postMeta?.Venues[0]
           ? ", " + postMeta.Venues[0].data.City + ", CO"
           : "");
+    } else if (customSEO) {
+      title = customSEO.title || null;
+      Name = customSEO.Name || null;
+      description = customSEO.description || null;
+      image = customSEO.image || config.siteLogo;
+      postURL = customSEO.postURL || window.location.href;
+      author = customSEO.author || null;
+      postMeta = customSEO.postMeta || null;
+      ogImage = customSEO.ogImage || defaultOG;
+      image = customSEO.image || defaultOG;
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
@@ -110,7 +120,7 @@ class SEO extends Component {
         </script>
 
         {/* OpenGraph tags */}
-        <meta property="og:url" content={postSEO ? postURL : blogURL} />
+        <meta property="og:url" content={postSEO ? postURL : (customSEO ? postURL : blogURL)} />
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />

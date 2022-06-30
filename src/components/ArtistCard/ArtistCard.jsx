@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import "./ArtistCard.scss";
 import _ from "lodash";
 
 const ArtistCard = ({ artist, large = false }) => {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
-import "./Footer.scss";
 import NewsletterSignup from "../NewsletterSignup/NewsletterSignup";
 
 const Footer = ({ showCTA = true }) => {
