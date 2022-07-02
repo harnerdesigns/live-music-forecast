@@ -44,7 +44,7 @@ class SEO extends Component {
       Name = customSEO.Name || null;
       description = customSEO.description || null;
       image = customSEO.image || config.siteLogo;
-      postURL = customSEO.postURL || window.location.href;
+      postURL = customSEO.postURL || '';
       author = customSEO.author || null;
       postMeta = customSEO.postMeta || null;
       ogImage = customSEO.ogImage || defaultOG;
